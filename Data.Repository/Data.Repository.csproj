@@ -49,6 +49,11 @@
   <ItemGroup>
     <Compile Include="Context\CountryContext.cs" />
     <Compile Include="Factory\DbFactory.cs" />
+    <Compile Include="Migrations\201801101807514_InitMigration.cs" />
+    <Compile Include="Migrations\201801101807514_InitMigration.Designer.cs">
+      <DependentUpon>201801101807514_InitMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\CurrencyRepository.cs" />
     <Compile Include="Repository\CountryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,6 +71,11 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201801101807514_InitMigration.resx">
+      <DependentUpon>201801101807514_InitMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
