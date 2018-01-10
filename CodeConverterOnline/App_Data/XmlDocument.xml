@@ -514,9 +514,16 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:CodeConverterOnline.Controllers.CountryController.FindCountries(CodeConverterOnline.Models.SearchDTO)">
+            <summary>
+            Get set of countries by parameters provided
+            </summary>
+            <param name="search">Search parameters</param>
+            <returns></returns>
+        </member>
         <member name="M:CodeConverterOnline.Controllers.CountryController.GetCountry(System.String,System.String)">
             <summary>
-            Get country name by ISO-code
+            Get single country by ISO-code
             </summary>
             <param name="isoCode">ISO-code</param>
             <param name="culture"></param>
@@ -532,13 +539,28 @@
         </member>
         <member name="T:CodeConverterOnline.Controllers.CurrencyController">
             <summary>
-            Coutries
+            Currencies
             </summary>
         </member>
         <member name="M:CodeConverterOnline.Controllers.CurrencyController.GetCurrencies">
             <summary>
-            Get all countries
+            Get all currencies
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CodeConverterOnline.Controllers.CurrencyController.GetCurrency(System.String,System.String)">
+            <summary>
+            Get single currency by ISO-code
+            </summary>
+            <param name="isoCode">ISO-code</param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CodeConverterOnline.Controllers.CurrencyController.FindCountries(CodeConverterOnline.Models.SearchDTO)">
+            <summary>
+            Get set of currencies by parameters provided
+            </summary>
+            <param name="search">Search parameters</param>
             <returns></returns>
         </member>
     </members>

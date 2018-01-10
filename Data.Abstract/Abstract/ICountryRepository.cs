@@ -9,8 +9,8 @@ namespace Data.Abstract
 {
     public interface ICountryRepository : IRepository<Country>
     {
-        Country GetCountry(string isoCode);
-        IEnumerable<Country> GetCountries();
-        IEnumerable<Country> FindCountries(string[] isoCodes, string[] countryNames);
+        Country Get(string isoCode);
+        IEnumerable<Country> Get();
+        IEnumerable<Country> Find(string[] isoCodes);
     }
 }

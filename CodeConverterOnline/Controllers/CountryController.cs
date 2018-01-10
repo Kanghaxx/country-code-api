@@ -16,15 +16,12 @@ namespace CodeConverterOnline.Controllers
     /// Coutries
     /// </summary>
     [RoutePrefix("api/country")]
-    public class CountryController : ApiController
+    public class CountryController : ControllerBase
     {
-        private IStoreFactory Store { get; set; }
-        
-
-        public CountryController(IStoreFactory store)
+        public CountryController(IStoreFactory store):base (store)
         {
-            Store = store;
         }
+
 
         /// <summary>
         /// Get all countries
@@ -35,7 +32,8 @@ namespace CodeConverterOnline.Controllers
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
             {
-                var c = rep.CountryRepository.GetCountries()
+                var c = rep.CountryRepository
+                    .Get()
                     .AsCountryDTO();
                 if (c == null)
                 {
@@ -45,27 +43,32 @@ namespace CodeConverterOnline.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("find")]
-        public IHttpActionResult FindCountries([FromBody] CountryFindDTO search)
-        {
-            // todo get array of isoCodes from body in JSON
-            // in practice a lot of infrastructure pieces do drop the body of a GET
-            // so use POST
-            using (IUnitOfWork rep = Store.CreateUnitOfWork())
-            {
-                var c = rep.CountryRepository.FindCountries(search.IsoCodes, search.CountryNames)
-                    .AsCountryDTO();
-                if (c == null)
-                {
-                    return NotFound();
-                }
-                return Ok(c);
-            }
-        }
 
         /// <summary>
-        /// Get country name by ISO-code
+        /// Get set of countries by parameters provided
+        /// </summary>
+        /// <param name="search">Search parameters</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("find")]
+        public IHttpActionResult FindCountries([FromBody] SearchDTO search)
+        {
+            using (IUnitOfWork rep = Store.CreateUnitOfWork())
+            {
+                var c = rep.CountryRepository
+                    .Find(search.IsoCodes)
+                    .AsCountryDTO();
+                if (c == null)
+                {
+                    return NotFound();
+                }
+                return Ok(c);
+            }
+        }
+
+
+        /// <summary>
+        /// Get single country by ISO-code
         /// </summary>
         /// <param name="isoCode">ISO-code</param>
         /// <param name="culture"></param>
@@ -75,7 +78,7 @@ namespace CodeConverterOnline.Controllers
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
             {
-                var c = rep.CountryRepository.GetCountry(isoCode)
+                var c = rep.CountryRepository.Get(isoCode)
                     .AsCountryDTO();
                 if (c == null)
                 {
@@ -84,8 +87,7 @@ namespace CodeConverterOnline.Controllers
                 return Ok(c);
             }
         }
-
-
+        
 
         /// <summary>
         /// Update country
@@ -99,7 +101,7 @@ namespace CodeConverterOnline.Controllers
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
             {
-                var c = rep.CountryRepository.GetCountry(isoCode)
+                var c = rep.CountryRepository.Get(isoCode)
                     .AsCountryDTO();
                 if (c == null)
                 {
@@ -114,17 +116,7 @@ namespace CodeConverterOnline.Controllers
                 return Ok(c);
             }
         }
-
-        // POST api/values
-        //public void Post([FromBody]string value)
-        //{
-        //}
-        //
-        //// PUT api/values/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-        //
+        
         //// DELETE api/values/5
         //public void Delete(int id)
         //{

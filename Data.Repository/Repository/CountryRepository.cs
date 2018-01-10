@@ -20,33 +20,36 @@ namespace Data.Repository
             CountryContext = countryContext;
         }
 
-        public Country GetCountry(string isoCode)
+        public Country Get(string isoCode)
         {
             return CountryContext.Countries
                 .Where(c => c.IsoCode == isoCode)
+                .Include(c => c.Currencies)
                 .FirstOrDefault();
         }
 
-        public IEnumerable<Country> GetCountries()
+        public IEnumerable<Country> Get()
         {
             return CountryContext.Countries
+                .Include(c => c.Currencies)
                 .OrderBy(c => c.IsoCode)
                 .ToList();
         }
 
-        public IEnumerable<Country> FindCountries(string[] isoCodes, string[] countryNames)
+        public IEnumerable<Country> Find(string[] isoCodes)
         {
-            // todo look at SQL
             var query = CountryContext.Countries.AsQueryable();
             if (isoCodes != null && isoCodes.Count() > 0)
             {
                 query = query.Where(c => isoCodes.Contains(c.IsoCode)); 
             }
-            if (countryNames != null && countryNames.Count() > 0)
-            {
-                query = query.Where(c => countryNames.Contains(c.Name));
-            }
-            var result = query.OrderBy(c => c.IsoCode)
+            //if (countryNames != null && countryNames.Count() > 0)
+            //{
+            //    query = query.Where(c => countryNames.Contains(c.Name));
+            //}
+            var result = query
+                .Include(c => c.Currencies)
+                .OrderBy(c => c.IsoCode)
                 .ToList();
             return result;
         }

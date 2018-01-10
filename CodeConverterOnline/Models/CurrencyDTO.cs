@@ -5,12 +5,10 @@ using System.Web;
 
 namespace CodeConverterOnline.Models
 {
-    public class CountryDTO
+    public class CurrencyDTO
     {
         public string CountryName { get; set; }
         public string IsoCode { get; set; }
-        
-        public IEnumerable<CurrencyDTO> Currencies { get; set; }
     }
 
 }

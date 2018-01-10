@@ -19,11 +19,11 @@ namespace TestApplication
 
             using (IUnitOfWork uow = new UnitOfWork())
             {
-                var countries = uow.CountryRepository.FindCountries(
+                var countries = uow.CountryRepository.Find(
                     //new string[] { "RU", "LV" },
-                    null,
+                    null
                     //new string[] { "USA", "Latvia", "XXX"});
-                    null);
+                    );
                 uow.Complete();
             }
 

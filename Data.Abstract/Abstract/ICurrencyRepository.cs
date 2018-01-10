@@ -9,7 +9,8 @@ namespace Data.Abstract
 {
     public interface ICurrencyRepository : IRepository<Currency>
     {
-        Currency GetCurrency(string isoCode);
-        IEnumerable<Currency> GetCurrencies();
+        Currency Get(string isoCode);
+        IEnumerable<Currency> Get();
+        IEnumerable<Currency> Find(string[] isoCodes);
     }
 }

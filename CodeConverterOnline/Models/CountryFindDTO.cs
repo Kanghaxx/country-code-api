@@ -5,9 +5,8 @@ using System.Web;
 
 namespace CodeConverterOnline.Models
 {
-    public class CountryFindDTO
+    public class SearchDTO
     {
         public string[] IsoCodes { get; set; }
-        public string[] CountryNames { get; set; }
     }
 }
