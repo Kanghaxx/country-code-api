@@ -13,8 +13,7 @@ namespace Data.Repository
     public class UnitOfWork : IUnitOfWork
     {
         private CountryContext CountryContext { get; set; }
-
-        // todo Lazy<t>
+        
         private ICountryRepository _countryRepository;
         public ICountryRepository CountryRepository
         {

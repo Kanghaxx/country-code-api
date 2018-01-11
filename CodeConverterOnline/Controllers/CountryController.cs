@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Data.Repository;
 using Data.Common.Model;
 using Data.Abstract;
+using System.Threading.Tasks;
 
 namespace CodeConverterOnline.Controllers
 {
@@ -28,18 +29,16 @@ namespace CodeConverterOnline.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("")]
-        public IHttpActionResult GetCountries()
+        public async Task<IHttpActionResult> GetCountries()
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
             {
-                var c = rep.CountryRepository
-                    .Get()
-                    .AsCountryDTO();
-                if (c == null)
+                var items = await rep.CountryRepository.GetAsync();
+                if (items == null)
                 {
                     return NotFound();
                 }
-                return Ok(c);
+                return Ok(items.AsCountryDTO());
             }
         }
 
@@ -51,18 +50,16 @@ namespace CodeConverterOnline.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("find")]
-        public IHttpActionResult FindCountries([FromBody] SearchDTO search)
+        public async Task<IHttpActionResult> FindCountries([FromBody] SearchDTO search)
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
             {
-                var c = rep.CountryRepository
-                    .Find(search.IsoCodes)
-                    .AsCountryDTO();
-                if (c == null)
+                var items = await rep.CountryRepository.FindAsync(search.IsoCodes);
+                if (items == null)
                 {
                     return NotFound();
                 }
-                return Ok(c);
+                return Ok(items.AsCountryDTO());
             }
         }
 
@@ -74,17 +71,16 @@ namespace CodeConverterOnline.Controllers
         /// <param name="culture"></param>
         /// <returns></returns>
         [Route("{isoCode}")]
-        public IHttpActionResult GetCountry(string isoCode, string culture = "")
+        public async Task<IHttpActionResult> GetCountry(string isoCode, string culture = "")
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
             {
-                var c = rep.CountryRepository.Get(isoCode)
-                    .AsCountryDTO();
-                if (c == null)
+                var item = await rep.CountryRepository.GetAsync(isoCode);
+                if (item == null)
                 {
                     return NotFound();
                 }
-                return Ok(c);
+                return Ok(item.AsCountryDTO());
             }
         }
         
@@ -97,23 +93,22 @@ namespace CodeConverterOnline.Controllers
         /// <returns></returns>
         [Route("{isoCode}/update")]
         [HttpPost]
-        public IHttpActionResult UpdateCountry(string isoCode, [FromBody] Country country)
+        public async Task<IHttpActionResult> UpdateCountry(string isoCode, [FromBody] Country country)
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
             {
-                var c = rep.CountryRepository.Get(isoCode)
-                    .AsCountryDTO();
-                if (c == null)
+                var item = await rep.CountryRepository.GetAsync(isoCode);
+                if (item == null)
                 {
                     return NotFound();
                 }
 
-                c.IsoCode = country.IsoCode;
-                c.Name = country.Name;
+                item.IsoCode = country.IsoCode;
+                item.Name = country.Name;
 
-                rep.Complete();
+                await rep.CompleteAsync();
 
-                return Ok(c);
+                return Ok(item.AsCountryDTO());
             }
         }
         
