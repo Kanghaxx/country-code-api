@@ -7,7 +7,7 @@ using System.Web.Http;
 using CodeConverterOnline.Models;
 using Data.Abstract;
 using Data.Repository;
-
+using System.Threading.Tasks;
 
 namespace CodeConverterOnline.Controllers
 {
@@ -26,18 +26,16 @@ namespace CodeConverterOnline.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("")]
-        public IHttpActionResult GetCurrencies()
+        public async Task<IHttpActionResult> GetCurrencies()
         {
             using (var rep = new UnitOfWork())
             {
-                var c = rep.CurrencyRepository
-                    .Get()
-                    .AsCurrencyDTO();
-                if (c == null)
+                var items = await rep.CurrencyRepository.GetAsync();
+                if (items == null)
                 {
                     return NotFound();
                 }
-                return Ok(c);
+                return Ok(items.AsCurrencyDTO());
             }
         }
 
@@ -49,17 +47,16 @@ namespace CodeConverterOnline.Controllers
         /// <param name="culture"></param>
         /// <returns></returns>
         [Route("{isoCode}")]
-        public IHttpActionResult GetCurrency(string isoCode, string culture = "")
+        public async Task<IHttpActionResult> GetCurrency(string isoCode, string culture = "")
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
             {
-                var c = rep.CurrencyRepository.Get(isoCode)
-                    .AsCurrencyDTO();
-                if (c == null)
+                var item = await rep.CurrencyRepository.GetAsync(isoCode);
+                if (item == null)
                 {
                     return NotFound();
                 }
-                return Ok(c);
+                return Ok(item.AsCurrencyDTO());
             }
         }
 
@@ -71,18 +68,16 @@ namespace CodeConverterOnline.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("find")]
-        public IHttpActionResult FindCountries([FromBody] SearchDTO search)
+        public async Task<IHttpActionResult> FindCountries([FromBody] SearchDTO search)
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
             {
-                var c = rep.CurrencyRepository
-                    .Find(search.IsoCodes)
-                    .AsCurrencyDTO();
-                if (c == null)
+                var items = await rep.CurrencyRepository.FindAsync(search.IsoCodes);
+                if (items == null)
                 {
                     return NotFound();
                 }
-                return Ok(c);
+                return Ok(items.AsCurrencyDTO());
             }
         }
     }
