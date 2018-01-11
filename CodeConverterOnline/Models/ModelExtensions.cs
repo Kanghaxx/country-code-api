@@ -8,50 +8,68 @@ namespace CodeConverterOnline.Models
 {
     public static class CountryExtensions
     {
-        public static IEnumerable<CountryDTO> AsCountryDTO(this IEnumerable<Country> data)
+        public static IEnumerable<CountryDTO> AsCountryDTO(this IEnumerable<Country> data, bool details = true)
         {
             var result = new List<CountryDTO>();
             foreach (Country country in data)
             {
-                var countryDTO = country.AsCountryDTO();
-                countryDTO.Currencies = country.Currencies.AsCurrencyDTO();
-                result.Add(countryDTO);
+                result.Add(country.AsCountryDTO(details));
             }
             return result;
         }
 
-        public static CountryDTO AsCountryDTO(this Country country)
+        public static CountryDTO AsCountryDTO(this Country country, bool details = true)
         {
-            return new CountryDTO()
+            CountryDTO dto;
+            if (details)
             {
-                IsoCode = country.IsoCode,
-                CountryName = country.Name,
-                Currencies = country.Currencies.AsCurrencyDTO()
-        };
+                dto = new CountryDetailsDTO()
+                {
+                    Currencies = country.Currencies.AsCurrencyDTO(false)
+                };
+            }
+            else
+            {
+                dto = new CountryDTO();
+            }
+            dto.IsoCode = country.IsoCode;
+            dto.Name = country.Name;
+
+            return dto;
         }
     }
 
 
     public static class CurrencyExtensions
     {
-        public static IEnumerable<CurrencyDTO> AsCurrencyDTO(this IEnumerable<Currency> data)
+        public static IEnumerable<CurrencyDTO> AsCurrencyDTO(this IEnumerable<Currency> data, bool details = true)
         {
             var result = new List<CurrencyDTO>();
             foreach (Currency c in data)
             {
-                var dto = c.AsCurrencyDTO();
-                result.Add(dto);
+                result.Add(c.AsCurrencyDTO(details));
             }
             return result;
         }
 
-        public static CurrencyDTO AsCurrencyDTO(this Currency country)
+        public static CurrencyDTO AsCurrencyDTO(this Currency currency, bool details = true)
         {
-            return new CurrencyDTO()
+            CurrencyDTO dto;
+            if (details)
             {
-                IsoCode = country.IsoCode,
-                CountryName = country.Name
-            };
+                dto = new CurrencyDetailsDTO()
+                {
+                    Countries = currency.Countries.AsCountryDTO(false)
+                };
+            }
+            else
+            {
+                dto = new CurrencyDTO();
+            }
+            dto.IsoCode = currency.IsoCode;
+            dto.Name = currency.Name;
+
+            return dto;
         }
     }
 }

@@ -109,7 +109,7 @@ namespace CodeConverterOnline.Controllers
                 }
 
                 c.IsoCode = country.IsoCode;
-                c.CountryName = country.Name;
+                c.Name = country.Name;
 
                 rep.Complete();
 

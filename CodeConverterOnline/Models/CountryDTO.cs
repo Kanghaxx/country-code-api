@@ -7,10 +7,12 @@ namespace CodeConverterOnline.Models
 {
     public class CountryDTO
     {
-        public string CountryName { get; set; }
+        public string Name { get; set; }
         public string IsoCode { get; set; }
-        
-        public IEnumerable<CurrencyDTO> Currencies { get; set; }
     }
 
+    public class CountryDetailsDTO: CountryDTO
+    {
+        public IEnumerable<CurrencyDTO> Currencies { get; set; }
+    }
 }
