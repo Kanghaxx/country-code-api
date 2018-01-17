@@ -60,5 +60,26 @@ namespace Testing.Web.API.Model
             Assert.IsNotNull(cDto2);
             Assert.IsNotInstanceOfType(cDto2, typeof(CountryDetailsDTO));
         }
+
+        [TestMethod]
+        public void AsCurrencyDTO_Returns_DtoWithNoDetailsIfNull()
+        {
+            Currency c = new Currency()
+            {
+                CurrencyId = 1,
+                IsoCode = "XX",
+                Name = "Curr1",
+                Countries = null
+            };
+
+            // Act
+            CurrencyDTO dto = c.AsCurrencyDTO(details: true);
+
+            Assert.AreEqual(dto.IsoCode, c.IsoCode);
+            Assert.AreEqual(dto.Name, c.Name);
+            Assert.IsInstanceOfType(dto, typeof(CurrencyDetailsDTO));
+            Assert.IsNotNull((dto as CurrencyDetailsDTO).Countries);
+            Assert.IsTrue((dto as CurrencyDetailsDTO).Countries.Count() == 0);
+        }
     }
 }

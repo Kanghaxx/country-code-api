@@ -26,7 +26,9 @@ namespace Web.API.Models
             {
                 dto = new CountryDetailsDTO()
                 {
-                    Currencies = country.Currencies.AsCurrencyDTO(false)
+                    Currencies = country.Currencies == null?
+                        new List<CurrencyDTO>()
+                        : country.Currencies.AsCurrencyDTO(false)
                 };
             }
             else
@@ -60,7 +62,9 @@ namespace Web.API.Models
             {
                 dto = new CurrencyDetailsDTO()
                 {
-                    Countries = currency.Countries.AsCountryDTO(false)
+                    Countries = currency.Countries == null?
+                        new List<CountryDTO>()
+                        : currency.Countries.AsCountryDTO(false)
                 };
             }
             else
