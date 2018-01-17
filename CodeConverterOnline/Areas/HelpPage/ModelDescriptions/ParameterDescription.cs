@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace CodeConverterOnline.Areas.HelpPage.ModelDescriptions
+namespace Web.API.Areas.HelpPage.ModelDescriptions
 {
     public class ParameterDescription
     {

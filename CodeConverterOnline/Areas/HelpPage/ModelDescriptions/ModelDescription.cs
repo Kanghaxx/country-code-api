@@ -1,6 +1,6 @@
 using System;
 
-namespace CodeConverterOnline.Areas.HelpPage.ModelDescriptions
+namespace Web.API.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.

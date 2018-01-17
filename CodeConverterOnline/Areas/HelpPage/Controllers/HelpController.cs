@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using CodeConverterOnline.Areas.HelpPage.ModelDescriptions;
-using CodeConverterOnline.Areas.HelpPage.Models;
+using Web.API.Areas.HelpPage.ModelDescriptions;
+using Web.API.Areas.HelpPage.Models;
 
-namespace CodeConverterOnline.Areas.HelpPage.Controllers
+namespace Web.API.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

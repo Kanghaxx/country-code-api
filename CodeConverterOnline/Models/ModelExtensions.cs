@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CodeConverterOnline.Models
+namespace Web.API.Models
 {
     public static class CountryExtensions
     {
@@ -17,6 +17,7 @@ namespace CodeConverterOnline.Models
             }
             return result;
         }
+
 
         public static CountryDTO AsCountryDTO(this Country country, bool details = true)
         {

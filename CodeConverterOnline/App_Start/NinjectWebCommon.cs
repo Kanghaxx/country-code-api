@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(CodeConverterOnline.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(CodeConverterOnline.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Web.API.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Web.API.App_Start.NinjectWebCommon), "Stop")]
 
-namespace CodeConverterOnline.App_Start
+namespace Web.API.App_Start
 {
     using System;
     using System.Web;
@@ -11,7 +11,7 @@ namespace CodeConverterOnline.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using Data.Repository;
-    using Data.Abstract;
+    using Data.Common.Abstract;
 
     public static class NinjectWebCommon 
     {

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace CodeConverterOnline
+namespace Web.API
 {
     public class FilterConfig
     {

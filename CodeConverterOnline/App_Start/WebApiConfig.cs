@@ -7,7 +7,7 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Xml;
 
-namespace CodeConverterOnline
+namespace Web.API
 {
     public static class WebApiConfig
     {

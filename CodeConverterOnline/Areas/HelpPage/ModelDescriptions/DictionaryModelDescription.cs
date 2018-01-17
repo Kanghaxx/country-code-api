@@ -1,4 +1,4 @@
-namespace CodeConverterOnline.Areas.HelpPage.ModelDescriptions
+namespace Web.API.Areas.HelpPage.ModelDescriptions
 {
     public class DictionaryModelDescription : KeyValuePairModelDescription
     {

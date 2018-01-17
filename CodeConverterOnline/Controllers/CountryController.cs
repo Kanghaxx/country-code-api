@@ -1,17 +1,18 @@
-﻿using CodeConverterOnline.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Newtonsoft.Json;
-using Data.Repository;
-using Data.Common.Model;
-using Data.Abstract;
 using System.Threading.Tasks;
 
-namespace CodeConverterOnline.Controllers
+using Data.Repository;
+using Data.Common.Model;
+using Data.Common.Abstract;
+using Web.API.Models;
+
+namespace Web.API.Controllers
 {
     /// <summary>
     /// Coutries

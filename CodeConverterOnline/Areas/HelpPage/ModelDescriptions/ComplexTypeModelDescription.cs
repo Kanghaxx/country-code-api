@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace CodeConverterOnline.Areas.HelpPage.ModelDescriptions
+namespace Web.API.Areas.HelpPage.ModelDescriptions
 {
     public class ComplexTypeModelDescription : ModelDescription
     {

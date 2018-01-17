@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-
-using CodeConverterOnline.Models;
-using Data.Abstract;
-using Data.Repository;
 using System.Threading.Tasks;
 
-namespace CodeConverterOnline.Controllers
+using Web.API.Models;
+using Data.Common.Abstract;
+using Data.Repository;
+
+namespace Web.API.Controllers
 {
     /// <summary>
     /// Currencies

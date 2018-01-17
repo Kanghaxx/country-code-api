@@ -13,8 +13,8 @@ namespace Data.Repository.Context
 {
     public class CountryContext: DbContext
     {
-        public DbSet<Country> Countries { get; set; }
-        public DbSet<Currency> Currencies { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<Currency> Currencies { get; set; }
 
         public void FixEfProviderServicesProblem()
         {

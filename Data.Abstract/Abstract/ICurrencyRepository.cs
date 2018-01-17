@@ -6,7 +6,7 @@ using System.Text;
 using Data.Common.Model;
 using System.Threading.Tasks;
 
-namespace Data.Abstract
+namespace Data.Common.Abstract
 {
     public interface ICurrencyRepository : IRepository<Currency>
     {

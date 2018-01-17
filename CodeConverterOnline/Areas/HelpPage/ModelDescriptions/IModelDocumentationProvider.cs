@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace CodeConverterOnline.Areas.HelpPage.ModelDescriptions
+namespace Web.API.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

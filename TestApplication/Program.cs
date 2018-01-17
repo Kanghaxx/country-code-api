@@ -1,14 +1,15 @@
-﻿using Data.Repository.Context;
-using Data.Common.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Data.Repository;
-using Data.Abstract;
 using System.Drawing;
 using System.Net;
+
+using Data.Repository;
+using Data.Common.Abstract;
+using Data.Repository.Context;
+using Data.Common.Model;
 
 namespace TestApplication
 {

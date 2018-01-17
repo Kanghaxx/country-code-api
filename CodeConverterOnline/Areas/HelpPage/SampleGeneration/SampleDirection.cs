@@ -1,4 +1,4 @@
-namespace CodeConverterOnline.Areas.HelpPage
+namespace Web.API.Areas.HelpPage
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response
