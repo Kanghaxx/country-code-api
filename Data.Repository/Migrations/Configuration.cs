@@ -10,6 +10,7 @@ namespace Data.Repository.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "Data.Repository.Context.CountryContext";
         }
 
         protected override void Seed(Data.Repository.Context.CountryContext context)

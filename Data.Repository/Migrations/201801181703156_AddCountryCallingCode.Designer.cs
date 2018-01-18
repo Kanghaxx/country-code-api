@@ -7,13 +7,13 @@ namespace Data.Repository.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class InitMigration : IMigrationMetadata
+    public sealed partial class AddCountryCallingCode : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCountryCallingCode));
         
         string IMigrationMetadata.Id
         {
-            get { return "201801101807514_InitMigration"; }
+            get { return "201801181703156_AddCountryCallingCode"; }
         }
         
         string IMigrationMetadata.Source

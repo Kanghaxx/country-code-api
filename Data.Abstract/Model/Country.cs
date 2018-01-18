@@ -13,9 +13,11 @@ namespace Data.Common.Model
     {
         public long CountryId { get; set; }
 
+        /// <summary>
+        /// Country code (ISO 3166-1 Alpha-2)
+        /// </summary>
         [Required]
         [MaxLength(2)]
-        [Description("ISO 3166-1 Alpha-2")]
         public string IsoCode { get; set; }
 
         //[Description("ISO 3166-1 numeric")]
@@ -29,9 +31,17 @@ namespace Data.Common.Model
         //[Description("ISO 3166-2")]
         //public string IsoCode2 { get; set; }
 
+        /// <summary>
+        /// Country name
+        /// </summary>
         [Required]
         [MaxLength(300)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Calling code
+        /// </summary>
+        public int? CallingCode { get; set; }
 
         public ICollection<Currency> Currencies { get; set; }
     }

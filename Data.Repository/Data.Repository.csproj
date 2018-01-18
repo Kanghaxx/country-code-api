@@ -50,9 +50,13 @@
   <ItemGroup>
     <Compile Include="Context\CountryContext.cs" />
     <Compile Include="Factory\DbFactory.cs" />
-    <Compile Include="Migrations\201801101807514_InitMigration.cs" />
-    <Compile Include="Migrations\201801101807514_InitMigration.Designer.cs">
-      <DependentUpon>201801101807514_InitMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201712061558523_InitialCreate.cs" />
+    <Compile Include="Migrations\201712061558523_InitialCreate.Designer.cs">
+      <DependentUpon>201712061558523_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801181703156_AddCountryCallingCode.cs" />
+    <Compile Include="Migrations\201801181703156_AddCountryCallingCode.Designer.cs">
+      <DependentUpon>201801181703156_AddCountryCallingCode.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\CurrencyRepository.cs" />
@@ -72,10 +76,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="PrivateConnectionStrings.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201801101807514_InitMigration.resx">
-      <DependentUpon>201801101807514_InitMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712061558523_InitialCreate.resx">
+      <DependentUpon>201712061558523_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801181703156_AddCountryCallingCode.resx">
+      <DependentUpon>201801181703156_AddCountryCallingCode.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
