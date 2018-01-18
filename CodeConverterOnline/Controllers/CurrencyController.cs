@@ -28,7 +28,7 @@ namespace Web.API.Controllers
         [Route("")]
         public async Task<IHttpActionResult> GetCurrencies()
         {
-            using (var rep = new UnitOfWork())
+            using (IUnitOfWork rep = Store.CreateUnitOfWork())
             {
                 var items = await rep.CurrencyRepository.GetAsync();
                 if (items == null)
@@ -68,7 +68,7 @@ namespace Web.API.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("find")]
-        public async Task<IHttpActionResult> FindCountries([FromBody] SearchDTO search)
+        public async Task<IHttpActionResult> FindCurrencies([FromBody] SearchDTO search)
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
             {

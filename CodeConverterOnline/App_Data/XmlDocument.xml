@@ -556,7 +556,7 @@
             <param name="culture"></param>
             <returns></returns>
         </member>
-        <member name="M:Web.API.Controllers.CurrencyController.FindCountries(Web.API.Models.SearchDTO)">
+        <member name="M:Web.API.Controllers.CurrencyController.FindCurrencies(Web.API.Models.SearchDTO)">
             <summary>
             Get set of currencies by parameters provided
             </summary>
