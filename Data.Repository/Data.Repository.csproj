@@ -66,6 +66,10 @@
     <Compile Include="Migrations\201801192109404_AddCountryOrganization.Designer.cs">
       <DependentUpon>201801192109404_AddCountryOrganization.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801192319069_Merge.cs" />
+    <Compile Include="Migrations\201801192319069_Merge.Designer.cs">
+      <DependentUpon>201801192319069_Merge.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\CurrencyRepository.cs" />
     <Compile Include="Repository\CountryRepository.cs" />
@@ -100,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801192109404_AddCountryOrganization.resx">
       <DependentUpon>201801192109404_AddCountryOrganization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801192319069_Merge.resx">
+      <DependentUpon>201801192319069_Merge.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
