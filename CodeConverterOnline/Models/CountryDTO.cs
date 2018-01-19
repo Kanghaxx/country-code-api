@@ -15,5 +15,6 @@ namespace Web.API.Models
     public class CountryDetailsDTO: CountryDTO
     {
         public IEnumerable<CurrencyDTO> Currencies { get; set; }
+        public IEnumerable<OrganizationDTO> Organizations { get; set; }
     }
 }
