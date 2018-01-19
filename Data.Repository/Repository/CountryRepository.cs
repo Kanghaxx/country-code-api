@@ -27,6 +27,7 @@ namespace Data.Repository
         {
             return CountryContext.Countries
                 .Where(c => c.IsoCode == isoCode)
+                .Include(c => c.Organizations)
                 .Include(c => c.Currencies);
         }
 
@@ -44,6 +45,7 @@ namespace Data.Repository
         {
             return CountryContext.Countries
                 .Include(c => c.Currencies)
+                .Include(c => c.Organizations)
                 .OrderBy(c => c.IsoCode);
         }
 
@@ -71,6 +73,7 @@ namespace Data.Repository
             //}
             var result = query
                 .Include(c => c.Currencies)
+                .Include(c => c.Organizations)
                 .OrderBy(c => c.IsoCode);
             return result;
         }

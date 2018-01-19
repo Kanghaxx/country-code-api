@@ -62,6 +62,10 @@
     <Compile Include="Migrations\201801191917562_CountryAddDateFormat.Designer.cs">
       <DependentUpon>201801191917562_CountryAddDateFormat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801192109404_AddCountryOrganization.cs" />
+    <Compile Include="Migrations\201801192109404_AddCountryOrganization.Designer.cs">
+      <DependentUpon>201801192109404_AddCountryOrganization.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\CurrencyRepository.cs" />
     <Compile Include="Repository\CountryRepository.cs" />
@@ -93,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801191917562_CountryAddDateFormat.resx">
       <DependentUpon>201801191917562_CountryAddDateFormat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801192109404_AddCountryOrganization.resx">
+      <DependentUpon>201801192109404_AddCountryOrganization.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

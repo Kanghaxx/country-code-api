@@ -50,6 +50,7 @@ namespace Data.Common.Model
         [MaxLength(100)]
         public string DateFormat { get; set; }
 
+        public ICollection<Organization> Organizations { get; set; }
         public ICollection<Currency> Currencies { get; set; }
     }
 }

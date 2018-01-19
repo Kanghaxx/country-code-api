@@ -29,9 +29,13 @@ namespace Web.API.Models
                     Currencies = country.Currencies == null?
                         new List<CurrencyDTO>()
                         : country.Currencies.AsCurrencyDTO(false),
+
+                    Organizations = country.Organizations == null ?
+                        new List<OrganizationDTO>()
+                        : country.Organizations.AsDTO(false),
                     CallingCode = country.CallingCode,
                     DateFormat = country.DateFormat
-            };
+                };
             }
             else
             {
@@ -79,4 +83,42 @@ namespace Web.API.Models
             return dto;
         }
     }
+
+
+    public static class OrganizationExtensions
+    {
+        public static IEnumerable<OrganizationDTO> AsDTO(this IEnumerable<Organization> data, bool details = true)
+        {
+            var result = new List<OrganizationDTO>();
+            foreach (Organization item in data)
+            {
+                result.Add(item.AsDTO(details));
+            }
+            return result;
+        }
+
+
+        public static OrganizationDTO AsDTO(this Organization item, bool details = true)
+        {
+            OrganizationDTO dto;
+            if (details)
+            {
+                dto = new OrganizationDetailsDTO()
+                {
+                    Countries = item.Countries == null ?
+                        new List<CountryDTO>()
+                        : item.Countries.AsCountryDTO(false),
+                    Description = item.Description
+                };
+            }
+            else
+            {
+                dto = new OrganizationDTO();
+            }
+            dto.Name = item.Name;
+
+            return dto;
+        }
+    }
+
 }

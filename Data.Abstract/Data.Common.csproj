@@ -49,6 +49,7 @@
     <Compile Include="Abstract\IUnitOfWork.cs" />
     <Compile Include="Model\Country.cs" />
     <Compile Include="Model\Currency.cs" />
+    <Compile Include="Model\Organization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

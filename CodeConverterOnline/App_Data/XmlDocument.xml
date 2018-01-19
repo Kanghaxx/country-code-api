@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>CodeConverterOnline</name>
+        <name>Web.API</name>
     </assembly>
     <members>
         <member name="M:Web.API.App_Start.NinjectWebCommon.Start">

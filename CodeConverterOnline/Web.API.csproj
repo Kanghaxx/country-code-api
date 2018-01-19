@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CodeConverterOnline</RootNamespace>
-    <AssemblyName>CodeConverterOnline</AssemblyName>
+    <RootNamespace>Web.API</RootNamespace>
+    <AssemblyName>Web.API</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -205,6 +205,7 @@
     <Compile Include="Models\CountryDTO.cs" />
     <Compile Include="Models\CountryFindDTO.cs" />
     <Compile Include="Models\ModelExtensions.cs" />
+    <Compile Include="Models\OrganizationDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

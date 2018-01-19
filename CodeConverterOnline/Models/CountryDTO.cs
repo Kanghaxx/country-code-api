@@ -16,5 +16,6 @@ namespace Web.API.Models
         public int? CallingCode { get; set; }
         public string DateFormat { get; set; }
         public IEnumerable<CurrencyDTO> Currencies { get; set; }
+        public IEnumerable<OrganizationDTO> Organizations { get; set; }
     }
 }
