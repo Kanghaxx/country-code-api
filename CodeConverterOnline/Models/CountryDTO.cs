@@ -9,11 +9,12 @@ namespace Web.API.Models
     {
         public string Name { get; set; }
         public string IsoCode { get; set; }
-        public int? CallingCode { get; set; }
     }
 
     public class CountryDetailsDTO: CountryDTO
     {
+        public int? CallingCode { get; set; }
+        public string DateFormat { get; set; }
         public IEnumerable<CurrencyDTO> Currencies { get; set; }
     }
 }

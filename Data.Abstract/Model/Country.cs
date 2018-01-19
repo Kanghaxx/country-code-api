@@ -43,6 +43,13 @@ namespace Data.Common.Model
         /// </summary>
         public int? CallingCode { get; set; }
 
+
+        /// <summary>
+        /// Date format
+        /// </summary>
+        [MaxLength(100)]
+        public string DateFormat { get; set; }
+
         public ICollection<Currency> Currencies { get; set; }
     }
 }

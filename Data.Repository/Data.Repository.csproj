@@ -58,6 +58,10 @@
     <Compile Include="Migrations\201801181703156_AddCountryCallingCode.Designer.cs">
       <DependentUpon>201801181703156_AddCountryCallingCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801191917562_CountryAddDateFormat.cs" />
+    <Compile Include="Migrations\201801191917562_CountryAddDateFormat.Designer.cs">
+      <DependentUpon>201801191917562_CountryAddDateFormat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\CurrencyRepository.cs" />
     <Compile Include="Repository\CountryRepository.cs" />
@@ -86,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801181703156_AddCountryCallingCode.resx">
       <DependentUpon>201801181703156_AddCountryCallingCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801191917562_CountryAddDateFormat.resx">
+      <DependentUpon>201801191917562_CountryAddDateFormat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

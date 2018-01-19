@@ -28,8 +28,10 @@ namespace Web.API.Models
                 {
                     Currencies = country.Currencies == null?
                         new List<CurrencyDTO>()
-                        : country.Currencies.AsCurrencyDTO(false)
-                };
+                        : country.Currencies.AsCurrencyDTO(false),
+                    CallingCode = country.CallingCode,
+                    DateFormat = country.DateFormat
+            };
             }
             else
             {
@@ -37,7 +39,6 @@ namespace Web.API.Models
             }
             dto.IsoCode = country.IsoCode;
             dto.Name = country.Name;
-            dto.CallingCode = country.CallingCode;
 
             return dto;
         }
