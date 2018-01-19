@@ -43,6 +43,7 @@ namespace Data.Common.Model
         /// </summary>
         public int? CallingCode { get; set; }
 
+        public ICollection<Organization> Organizations { get; set; }
         public ICollection<Currency> Currencies { get; set; }
     }
 }
