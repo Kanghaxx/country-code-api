@@ -11,7 +11,7 @@ using Web.API.Controllers;
 using System.Web.Http.Results;
 using Web.API.Models;
 
-namespace Testing.UnitTests.Data.Model.Controller
+namespace Testing.Web.API.Controller
 {
     [TestCategory("Web.Controllers.CountryController")]
     [TestClass]

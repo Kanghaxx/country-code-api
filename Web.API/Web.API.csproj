@@ -279,7 +279,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data.Abstract\Data.Common.csproj">
+    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
       <Project>{d219a296-675d-4712-b426-c72ed1fe0846}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>

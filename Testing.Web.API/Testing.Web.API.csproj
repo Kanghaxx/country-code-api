@@ -7,8 +7,8 @@
     <ProjectGuid>{70B263A0-69C8-41E8-8B0D-586EA1E61BEE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Testing.UnitTests.Data.Model</RootNamespace>
-    <AssemblyName>Testing.UnitTests.Data.Model</AssemblyName>
+    <RootNamespace>Testing.Web.API</RootNamespace>
+    <AssemblyName>Testing.Web.API</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -73,11 +73,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeConverterOnline\Web.API.csproj">
+    <ProjectReference Include="..\Web.API\Web.API.csproj">
       <Project>{04818AED-7AB1-40ED-B788-CEBBE3F4B9E4}</Project>
       <Name>Web.API</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data.Abstract\Data.Common.csproj">
+    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
       <Project>{D219A296-675D-4712-B426-C72ED1FE0846}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>

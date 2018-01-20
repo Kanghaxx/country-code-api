@@ -11,7 +11,7 @@ using Data.Common.Abstract;
 using Data.Repository.Context;
 using Data.Common.Model;
 
-namespace TestApplication
+namespace Testing.Application
 {
     class Program
     {

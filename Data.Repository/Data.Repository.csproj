@@ -78,7 +78,7 @@
     <Compile Include="Repository\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data.Abstract\Data.Common.csproj">
+    <ProjectReference Include="..\Data.Common\Data.Common.csproj">
       <Project>{D219A296-675D-4712-B426-C72ED1FE0846}</Project>
       <Name>Data.Common</Name>
     </ProjectReference>
