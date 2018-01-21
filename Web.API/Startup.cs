@@ -2,8 +2,6 @@
 using System.Threading.Tasks;
 using System.Reflection;
 using System.Web.Http;
-using System.Web.Mvc;
-using System.Web.Routing;
 using System.Web.Optimization;
 using Owin;
 using Microsoft.Owin;
@@ -24,10 +22,10 @@ namespace Web.API
             
             app.UseNinjectMiddleware(CreateKernel).UseNinjectWebApi(config);
 
-            AreaRegistration.RegisterAllAreas();
+            //AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            //RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
