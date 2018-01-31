@@ -18,7 +18,6 @@ namespace Web.API
         public void Configuration(IAppBuilder app)
         {
             HttpConfiguration config = new HttpConfiguration();
-            WebApiConfig.Register(config);
             
             app.UseNinjectMiddleware(CreateKernel).UseNinjectWebApi(config);
 
@@ -27,6 +26,7 @@ namespace Web.API
             //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             //RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            WebApiConfig.Register(config);
         }
 
         private static StandardKernel CreateKernel()
