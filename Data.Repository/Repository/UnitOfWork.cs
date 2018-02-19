@@ -40,9 +40,9 @@ namespace Data.Repository
         
         protected CountryContext CountryContext { get; set; }
 
-        public UnitOfWork()
+        public UnitOfWork(CountryContext context)
         {
-            CountryContext = new CountryContext();
+            CountryContext = context;
         }
         
 
@@ -58,7 +58,7 @@ namespace Data.Repository
 
         public void Dispose()
         {
-            CountryContext.Dispose();
+            //CountryContext.Dispose();
         }
 
     }

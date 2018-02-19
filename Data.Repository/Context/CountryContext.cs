@@ -8,10 +8,12 @@ using Data.Common.Model;
 using System.Data.Entity.Infrastructure.Annotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Data.Identity.Model;
 
 namespace Data.Repository.Context
 {
-    public class CountryContext: DbContext
+    public class CountryContext: IdentityDbContext<User>
     {
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Currency> Currencies { get; set; }

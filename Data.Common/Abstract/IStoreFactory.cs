@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Common.Abstract
 {
-    public interface IStoreFactory
+    public interface IStoreFactory: IDisposable
     {
         IUnitOfWork CreateUnitOfWork();
     }

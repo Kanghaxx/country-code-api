@@ -1,8 +1,11 @@
  using System;
 using Ninject;
+using Microsoft.AspNet.Identity;
+using Ninject.Web.Common;
 
 using Data.Repository;
 using Data.Common.Abstract;
+using Data.Identity.Abstract;
 
 namespace Web.API
 {
@@ -10,7 +13,7 @@ namespace Web.API
     {
         public static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IStoreFactory>().To<DbFactory>().InSingletonScope();
+            kernel.Bind<IStoreFactory, IUserFactory>().To<DbFactory>().InRequestScope();
         }        
     }
 }

@@ -18,7 +18,7 @@ namespace Testing.Application
         static void Main(string[] args)
         {
 
-            using (IUnitOfWork uow = new UnitOfWork())
+            using (IUnitOfWork uow = new UnitOfWork(null))
             {
                 var countries = uow.CountryRepository.Find(
                     //new string[] { "RU", "LV" },
