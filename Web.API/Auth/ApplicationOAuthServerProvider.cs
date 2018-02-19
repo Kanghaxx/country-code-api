@@ -1,10 +1,15 @@
-﻿using Microsoft.Owin.Security.OAuth;
+﻿using Data.Identity;
+using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using Microsoft.Owin.Security;
+using System.Security.Claims;
+using Microsoft.AspNet.Identity.Owin;
+using Data.Identity.Model;
 
 namespace Web.API.Auth
 {
@@ -22,6 +27,7 @@ namespace Web.API.Auth
             OAuthGrantResourceOwnerCredentialsContext context)
         {
             // TODO Identity
+            var manager = context.OwinContext.GetUserManager<UserManager>();
             if (context.Password != "password")
             {
                 context.SetError("invalid_grant", 

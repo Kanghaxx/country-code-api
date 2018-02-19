@@ -6,13 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Data.Identity
+namespace Web.API.Auth
 {
-    /* 
-        UserManager is here to decouple client apps from EntityFramework package.
-        Better it should be in the app level, but IdentityUser class which User is derived from 
-        is defined in Identity.EntityFramework.
-    */
     public class UserManager: UserManager<User>
     {
         public UserManager(IUserStore<User> store)

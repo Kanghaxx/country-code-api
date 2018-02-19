@@ -97,9 +97,8 @@ namespace Testing.Data.Repository
 
     class TestUnitofWork : UnitOfWork
     {
-        public TestUnitofWork(CountryContext contextMock)
+        public TestUnitofWork(CountryContext contextMock): base(contextMock)
         {
-            CountryContext = contextMock;
         }
     }
 }

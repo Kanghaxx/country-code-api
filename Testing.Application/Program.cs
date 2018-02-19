@@ -10,6 +10,10 @@ using Data.Repository;
 using Data.Common.Abstract;
 using Data.Repository.Context;
 using Data.Common.Model;
+using Data.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Data.Identity.Model;
+using Web.API.Auth;
 
 namespace Testing.Application
 {
@@ -17,31 +21,27 @@ namespace Testing.Application
     {
         static void Main(string[] args)
         {
-
-            using (IUnitOfWork uow = new UnitOfWork(null))
+            using (var context = new CountryContext())
             {
-                var countries = uow.CountryRepository.Find(
-                    //new string[] { "RU", "LV" },
-                    null
-                    //new string[] { "USA", "Latvia", "XXX"});
-                    );
-                uow.Complete();
+                using (var store = new UserStore<User>(context))
+                {
+                    using (var manager = new UserManager(store))
+                    {
+                        //manager.CreateAsync()
+                    }
+                }
             }
-
-            //using (var context = new CountryContext())
+            //using (IUnitOfWork uow = new UnitOfWork(new CountryContext()))
             //{
-            //    context.Countries.Add(
-            //        new Country()
-            //        {
-            //            Name = "test",
-            //            IsoCode = "RU"
-            //            
-            //        }
+            //    var countries = uow.CountryRepository.Find(
+            //        //new string[] { "RU", "LV" },
+            //        null
+            //        //new string[] { "USA", "Latvia", "XXX"});
             //        );
-            //    context.SaveChanges();
+            //    uow.Complete();
             //}
 
-            Console.WriteLine("Ready");
+                Console.WriteLine("Ready");
             Console.ReadKey();
         }
     }

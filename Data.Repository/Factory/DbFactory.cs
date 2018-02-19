@@ -20,7 +20,7 @@ namespace Data.Repository
 
         public DbFactory()
         {
-            CountryContext = new CountryContext();
+            CountryContext = new CountryContext("name=CountriesConnectionString");
         }
 
         public IUnitOfWork CreateUnitOfWork()

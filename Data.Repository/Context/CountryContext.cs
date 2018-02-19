@@ -28,9 +28,12 @@ namespace Data.Repository.Context
             var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
 
-        public CountryContext(): base ("name=CountriesConnectionString")
+        public CountryContext() 
         {
+        }
 
+        public CountryContext(string cs) : base (cs)
+        {
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

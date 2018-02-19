@@ -43,7 +43,7 @@ namespace Web.API
 
             kernel = CreateKernel();
             app.CreatePerOwinContext<UserManager>(CreateUserManager);
-
+            
             ConfigureAuth(app);
 
             HttpConfiguration config = new HttpConfiguration();
