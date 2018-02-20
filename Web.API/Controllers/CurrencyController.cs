@@ -26,7 +26,6 @@ namespace Web.API.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("")]
-        [Authorize]
         public async Task<IHttpActionResult> GetCurrencies()
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())

@@ -21,14 +21,24 @@ namespace Testing.Application
     {
         static void Main(string[] args)
         {
-            using (var context = new CountryContext())
+            using (var context = new CountryContext("name=CountriesConnectionString"))
             {
                 using (var store = new UserStore<User>(context))
                 {
                     using (var manager = new UserManager(store))
                     {
-                        //manager.CreateAsync()
+                        User u = new User()
+                        {
+                            UserName = "TestName",
+                            PhoneNumber = "8123456",
+                            Email = "vray@bk.ru"
+                        };
+
+                        var res = manager.CreateAsync(u, "password").Result;
+                        
+
                     }
+                    
                 }
             }
             //using (IUnitOfWork uow = new UnitOfWork(new CountryContext()))

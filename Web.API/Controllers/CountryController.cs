@@ -94,6 +94,7 @@ namespace Web.API.Controllers
         /// <returns></returns>
         [Route("{isoCode}/update")]
         [HttpPost]
+        [Authorize]
         public async Task<IHttpActionResult> UpdateCountry(string isoCode, [FromBody] Country country)
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())

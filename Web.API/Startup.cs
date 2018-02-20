@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Reflection;
 using System.Web.Http;
-using System.Web.Optimization;
 using Owin;
 using Microsoft.Owin;
 using Ninject;
@@ -52,7 +51,6 @@ namespace Web.API
             GlobalConfiguration.Configure(WebApiConfig.Register);
             //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             //RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
             WebApiConfig.Register(config);
 
             app.UseNinjectMiddleware(() => kernel).UseNinjectWebApi(config);
@@ -63,7 +61,7 @@ namespace Web.API
         {
             var OAuthOptions = new OAuthAuthorizationServerOptions
             {
-                TokenEndpointPath = new PathString("/Token"),
+                TokenEndpointPath = new PathString("/api/login"),
                 Provider = new ApplicationOAuthServerProvider(),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 

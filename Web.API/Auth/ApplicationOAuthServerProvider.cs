@@ -7,7 +7,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.Owin.Security;
-using System.Security.Claims;
 using Microsoft.AspNet.Identity.Owin;
 using Data.Identity.Model;
 
@@ -26,9 +25,10 @@ namespace Web.API.Auth
         public override async Task GrantResourceOwnerCredentials(
             OAuthGrantResourceOwnerCredentialsContext context)
         {
-            // TODO Identity
-            var manager = context.OwinContext.GetUserManager<UserManager>();
-            if (context.Password != "password")
+            // Retrieve user with name/password combo from Identity UserManager
+            var manager = context.OwinContext.Get<UserManager>();
+            var user = await manager.FindAsync(context.UserName, context.Password);
+            if (user == null)
             {
                 context.SetError("invalid_grant", 
                     "The user name or password is incorrect.");
@@ -36,12 +36,13 @@ namespace Web.API.Auth
                 return;
             }
 
-            // Create ClaimsIdentity object to represent the authenticated user
-            ClaimsIdentity identity =
-                new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("user_name", context.UserName));
+            // Add claims associated with this user to the ClaimsIdentity object
+            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+            foreach (var userClaim in user.Claims)
+            {
+                identity.AddClaim(new Claim(userClaim.ClaimType, userClaim.ClaimValue));
+            }
 
-            // validate context to return access token to client
             context.Validated(identity);
         }
     }
