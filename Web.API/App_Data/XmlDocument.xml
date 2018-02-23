@@ -47,7 +47,7 @@
         </member>
         <member name="M:Web.API.Controllers.CountryController.DeleteCountry(System.String)">
             <summary>
-            Update country
+            Delete country
             </summary>
             <param name="isoCode"></param>
             <returns></returns>
@@ -92,6 +92,28 @@
             Get set of currencies by parameters provided
             </summary>
             <param name="search">Search parameters</param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.API.Controllers.CurrencyController.PostCurrency(Web.API.Models.CurrencyDetailsDTO)">
+            <summary>
+            Add new currency
+            </summary>
+            <param name="currency"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.API.Controllers.CurrencyController.UpdateCurrency(System.String,Web.API.Models.CountryDetailsDTO)">
+            <summary>
+            Update currency
+            </summary>
+            <param name="isoCode"></param>
+            <param name="currency"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.API.Controllers.CurrencyController.DeleteCurrency(System.String)">
+            <summary>
+            Delete country
+            </summary>
+            <param name="isoCode"></param>
             <returns></returns>
         </member>
     </members>

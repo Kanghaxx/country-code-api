@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using Web.API.Models;
 using Data.Common.Abstract;
 using Data.Repository;
+using Data.Common.Model;
+using System.Net.Http;
+using System.Net;
 
 namespace Web.API.Controllers
 {
@@ -78,6 +81,123 @@ namespace Web.API.Controllers
                     return NotFound();
                 }
                 return Ok(items.AsCurrencyDTO(Url));
+            }
+        }
+
+
+        /// <summary>
+        /// Add new currency
+        /// </summary>
+        /// <param name="currency"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("")]
+        [Authorize]
+        public async Task<IHttpActionResult> PostCurrency([FromBody] CurrencyDetailsDTO currency)
+        {
+            if (currency == null)
+            {
+                return BadRequest($"Request content is empty");
+            }
+            using (IUnitOfWork rep = Store.CreateUnitOfWork())
+            {
+                var item = await rep.CurrencyRepository.GetAsync(currency.IsoCode);
+                if (item != null)
+                {
+                    return BadRequest("Currency already exists");
+                }
+
+                var newCurrency = new Currency()
+                {
+                    IsoCode = currency.IsoCode,
+                    Name = currency.Name,
+                    Countries = new List<Country>(),
+                };
+
+                if (currency.Countries != null)
+                {
+                    foreach (var cDto in currency.Countries)
+                    {
+                        var c = await rep.CountryRepository.GetAsync(cDto.IsoCode);
+                        if (c == null)
+                        {
+                            return BadRequest($"Country {cDto.IsoCode} not found");
+                        }
+                        newCurrency.Countries.Add(c);
+                    }
+                }
+                
+                newCurrency = rep.CurrencyRepository.Add(newCurrency);
+
+                await rep.CompleteAsync();
+
+                var result = newCurrency.AsCurrencyDTO(Url);
+                var response = Request.CreateResponse(HttpStatusCode.Created, result);
+                response.Headers.Location = new Uri(result.GetUrl);
+                return ResponseMessage(response);
+            }
+        }
+
+
+        /// <summary>
+        /// Update currency
+        /// </summary>
+        /// <param name="isoCode"></param>
+        /// <param name="currency"></param>
+        /// <returns></returns>
+        [Route("{isoCode}")]
+        [HttpPut]
+        [Authorize]
+        public async Task<IHttpActionResult> UpdateCurrency(string isoCode, [FromBody] CountryDetailsDTO currency)
+        {
+            if (currency == null)
+            {
+                return BadRequest($"Request content is empty");
+            }
+            using (IUnitOfWork rep = Store.CreateUnitOfWork())
+            {
+                var item = await rep.CurrencyRepository.GetAsync(isoCode);
+                if (item == null)
+                {
+                    return NotFound();
+                }
+
+                item.IsoCode = currency.IsoCode;
+                item.Name = currency.Name;
+
+                await rep.CompleteAsync();
+
+                var result = item.AsCurrencyDTO(Url);
+                var response = Request.CreateResponse(HttpStatusCode.Created, result);
+                response.Headers.Location = new Uri(result.GetUrl);
+                return ResponseMessage(response);
+            }
+        }
+
+
+        /// <summary>
+        /// Delete country
+        /// </summary>
+        /// <param name="isoCode"></param>
+        /// <returns></returns>
+        [Route("{isoCode}")]
+        [HttpDelete]
+        [Authorize]
+        public async Task<IHttpActionResult> DeleteCurrency(string isoCode)
+        {
+            using (IUnitOfWork rep = Store.CreateUnitOfWork())
+            {
+                var item = await rep.CurrencyRepository.GetAsync(isoCode);
+                if (item == null)
+                {
+                    return NotFound();
+                }
+
+                rep.CurrencyRepository.Remove(item);
+
+                await rep.CompleteAsync();
+
+                return Ok();
             }
         }
     }

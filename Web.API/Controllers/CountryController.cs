@@ -119,25 +119,33 @@ namespace Web.API.Controllers
                     Currencies = new List<Currency>(),
                     Organizations = new List<Organization>()
                 };
-                foreach (var curDto in country.Currencies)
+
+                if (country.Currencies != null)
                 {
-                    var cur = await rep.CurrencyRepository.GetAsync(curDto.IsoCode);
-                    if (cur == null)
+                    foreach (var curDto in country.Currencies)
                     {
-                        return BadRequest($"Currency {curDto.IsoCode} not found");
+                        var cur = await rep.CurrencyRepository.GetAsync(curDto.IsoCode);
+                        if (cur == null)
+                        {
+                            return BadRequest($"Currency {curDto.IsoCode} not found");
+                        }
+                        newCountry.Currencies.Add(cur);
                     }
-                    newCountry.Currencies.Add(cur);
                 }
 
-                foreach (var orgDto in country.Organizations)
+                if (country.Organizations != null)
                 {
-                    var org = await rep.OrganizationRepository.GetAsync(orgDto.Name);
-                    if (org == null)
+                    foreach (var orgDto in country.Organizations)
                     {
-                        return BadRequest($"Organization {orgDto.Name} not found");
+                        var org = await rep.OrganizationRepository.GetAsync(orgDto.Name);
+                        if (org == null)
+                        {
+                            return BadRequest($"Organization {orgDto.Name} not found");
+                        }
+                        newCountry.Organizations.Add(org);
                     }
-                    newCountry.Organizations.Add(org);
                 }
+            
                 newCountry = rep.CountryRepository.Add(newCountry);
 
                 await rep.CompleteAsync();
@@ -183,12 +191,12 @@ namespace Web.API.Controllers
                 var result = item.AsCountryDTO(Url);
                 var response = Request.CreateResponse(HttpStatusCode.Created, result);
                 response.Headers.Location = new Uri(result.GetUrl);
-                return Ok(result);
+                return ResponseMessage(response);
             }
         }
 
         /// <summary>
-        /// Update country
+        /// Delete country
         /// </summary>
         /// <param name="isoCode"></param>
         /// <returns></returns>
