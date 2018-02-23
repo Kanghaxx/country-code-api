@@ -18,6 +18,11 @@ namespace Data.Repository
             return Context.Set<T>().Add(item);
         }
 
+        public T Remove(T item)
+        {
+            return Context.Set<T>().Remove(item);
+        }
+
         public T Get(long id)
         {
             return Context.Set<T>().Find(id);

@@ -17,6 +17,7 @@ namespace Data.Repository.Context
     {
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Currency> Currencies { get; set; }
+        public virtual DbSet<Organization> Organizations { get; set; }
 
         public void FixEfProviderServicesProblem()
         {

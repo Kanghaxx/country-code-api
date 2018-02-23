@@ -9,6 +9,7 @@ namespace Web.API.Models
     {
         public string Name { get; set; }
         public string IsoCode { get; set; }
+        public string GetUrl { get; set; }
     }
 
     public class CurrencyDetailsDTO : CurrencyDTO

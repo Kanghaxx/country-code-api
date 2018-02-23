@@ -19,6 +19,7 @@
     <TestProjectType>UnitTest</TestProjectType>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -106,7 +107,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -114,13 +117,13 @@
       <Project>{4B53EE98-B838-4004-9CDB-0B1D35665D94}</Project>
       <Name>Data.Identity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Web.API\Web.API.csproj">
-      <Project>{04818AED-7AB1-40ED-B788-CEBBE3F4B9E4}</Project>
-      <Name>Web.API</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Data.Common\Data.Common.csproj">
       <Project>{D219A296-675D-4712-B426-C72ED1FE0846}</Project>
       <Name>Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Web.API\Web.API.csproj">
+      <Project>{04818aed-7ab1-40ed-b788-cebbe3f4b9e4}</Project>
+      <Name>Web.API</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

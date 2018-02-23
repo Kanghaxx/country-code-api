@@ -2,24 +2,26 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Web.Http.Routing;
 
 namespace Web.API.Models
 {
     public static class CountryExtensions
     {
-        public static IEnumerable<CountryDTO> AsCountryDTO(this IEnumerable<Country> data, bool details = true)
+        public static IEnumerable<CountryDTO> AsCountryDTO(this IEnumerable<Country> data, 
+            UrlHelper urlHelper, bool details = true)
         {
             var result = new List<CountryDTO>();
             foreach (Country country in data)
             {
-                result.Add(country.AsCountryDTO(details));
+                result.Add(country.AsCountryDTO(urlHelper, details));
             }
             return result;
         }
 
 
-        public static CountryDTO AsCountryDTO(this Country country, bool details = true)
+        public static CountryDTO AsCountryDTO(this Country country, 
+            UrlHelper urlHelper, bool details = true)
         {
             CountryDTO dto;
             if (details)
@@ -28,14 +30,13 @@ namespace Web.API.Models
                 {
                     Currencies = country.Currencies == null?
                         new List<CurrencyDTO>()
-                        : country.Currencies.AsCurrencyDTO(false),
-
+                        : country.Currencies.AsCurrencyDTO(urlHelper, false),
                     Organizations = country.Organizations == null ?
                         new List<OrganizationDTO>()
-                        : country.Organizations.AsDTO(false),
+                        : country.Organizations.AsDTO(urlHelper, false),
                     CallingCode = country.CallingCode,
-                    DateFormat = country.DateFormat
-                };
+                    DateFormat = country.DateFormat,
+            };
             }
             else
             {
@@ -43,6 +44,8 @@ namespace Web.API.Models
             }
             dto.IsoCode = country.IsoCode;
             dto.Name = country.Name;
+            dto.GetUrl = urlHelper == null ? "" 
+                : urlHelper.Link("Country", new { isoCode = country.IsoCode });
 
             return dto;
         }
@@ -51,17 +54,19 @@ namespace Web.API.Models
 
     public static class CurrencyExtensions
     {
-        public static IEnumerable<CurrencyDTO> AsCurrencyDTO(this IEnumerable<Currency> data, bool details = true)
+        public static IEnumerable<CurrencyDTO> AsCurrencyDTO(this IEnumerable<Currency> data, 
+            UrlHelper urlHelper, bool details = true)
         {
             var result = new List<CurrencyDTO>();
             foreach (Currency c in data)
             {
-                result.Add(c.AsCurrencyDTO(details));
+                result.Add(c.AsCurrencyDTO(urlHelper, details));
             }
             return result;
         }
 
-        public static CurrencyDTO AsCurrencyDTO(this Currency currency, bool details = true)
+        public static CurrencyDTO AsCurrencyDTO(this Currency currency, 
+            UrlHelper urlHelper, bool details = true)
         {
             CurrencyDTO dto;
             if (details)
@@ -70,7 +75,7 @@ namespace Web.API.Models
                 {
                     Countries = currency.Countries == null?
                         new List<CountryDTO>()
-                        : currency.Countries.AsCountryDTO(false)
+                        : currency.Countries.AsCountryDTO(urlHelper, false)
                 };
             }
             else
@@ -79,6 +84,8 @@ namespace Web.API.Models
             }
             dto.IsoCode = currency.IsoCode;
             dto.Name = currency.Name;
+            dto.GetUrl = urlHelper == null ? "" : 
+                urlHelper.Link("Currency", new { isoCode = currency.IsoCode });
 
             return dto;
         }
@@ -87,18 +94,21 @@ namespace Web.API.Models
 
     public static class OrganizationExtensions
     {
-        public static IEnumerable<OrganizationDTO> AsDTO(this IEnumerable<Organization> data, bool details = true)
+        public static IEnumerable<OrganizationDTO> AsDTO(
+            this IEnumerable<Organization> data, 
+            UrlHelper urlHelper, bool details = true)
         {
             var result = new List<OrganizationDTO>();
             foreach (Organization item in data)
             {
-                result.Add(item.AsDTO(details));
+                result.Add(item.AsDTO(urlHelper, details));
             }
             return result;
         }
 
 
-        public static OrganizationDTO AsDTO(this Organization item, bool details = true)
+        public static OrganizationDTO AsDTO(this Organization item, 
+            UrlHelper urlHelper, bool details = true)
         {
             OrganizationDTO dto;
             if (details)
@@ -107,7 +117,7 @@ namespace Web.API.Models
                 {
                     Countries = item.Countries == null ?
                         new List<CountryDTO>()
-                        : item.Countries.AsCountryDTO(false),
+                        : item.Countries.AsCountryDTO(urlHelper, false),
                     Description = item.Description
                 };
             }

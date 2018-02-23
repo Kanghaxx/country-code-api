@@ -30,12 +30,42 @@
             <param name="culture"></param>
             <returns></returns>
         </member>
-        <member name="M:Web.API.Controllers.CountryController.UpdateCountry(System.String,Data.Common.Model.Country)">
+        <member name="M:Web.API.Controllers.CountryController.PostCountry(Web.API.Models.CountryDetailsDTO)">
+            <summary>
+            Add new country
+            </summary>
+            <param name="country"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.API.Controllers.CountryController.UpdateCountry(System.String,Web.API.Models.CountryDetailsDTO)">
             <summary>
             Update country
             </summary>
             <param name="isoCode"></param>
             <param name="country"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.API.Controllers.CountryController.DeleteCountry(System.String)">
+            <summary>
+            Update country
+            </summary>
+            <param name="isoCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.API.Controllers.CountryController.AddCurrency(System.String,Web.API.Models.CurrencyDTO)">
+            <summary>
+            Add currency to country
+            </summary>
+            <param name="isoCode"></param>
+            <param name="currency"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.API.Controllers.CountryController.RemoveCurrency(System.String,System.String)">
+            <summary>
+            Remove currency to country
+            </summary>
+            <param name="isoCode"></param>
+            <param name="isoCodeCurrency"></param>
             <returns></returns>
         </member>
         <member name="T:Web.API.Controllers.CurrencyController">

@@ -35,7 +35,7 @@ namespace Web.API.Controllers
                 {
                     return NotFound();
                 }
-                return Ok(items.AsCurrencyDTO());
+                return Ok(items.AsCurrencyDTO(Url));
             }
         }
 
@@ -46,7 +46,7 @@ namespace Web.API.Controllers
         /// <param name="isoCode">ISO-code</param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        [Route("{isoCode}")]
+        [Route("{isoCode}", Name = "Currency")]
         public async Task<IHttpActionResult> GetCurrency(string isoCode, string culture = "")
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
@@ -56,7 +56,7 @@ namespace Web.API.Controllers
                 {
                     return NotFound();
                 }
-                return Ok(item.AsCurrencyDTO());
+                return Ok(item.AsCurrencyDTO(Url));
             }
         }
 
@@ -77,7 +77,7 @@ namespace Web.API.Controllers
                 {
                     return NotFound();
                 }
-                return Ok(items.AsCurrencyDTO());
+                return Ok(items.AsCurrencyDTO(Url));
             }
         }
     }

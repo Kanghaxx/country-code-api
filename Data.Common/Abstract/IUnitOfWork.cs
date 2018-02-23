@@ -10,6 +10,7 @@ namespace Data.Common.Abstract
     {
         ICountryRepository CountryRepository { get; }
         ICurrencyRepository CurrencyRepository { get; }
+        IOrganizationRepository OrganizationRepository { get; }
         void Complete();
         Task CompleteAsync();
     }

@@ -5,14 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Microsoft.Owin.Security.Provider;
 using Microsoft.AspNet.Identity.Owin;
 
-using Data.Common.Model;
-using Data.Common.Abstract;
-using Web.API.Controllers;
-using System.Web.Http.Results;
-using Web.API.Models;
 using Web.API.Auth;
 using Microsoft.Owin.Security.OAuth;
 using Microsoft.Owin;

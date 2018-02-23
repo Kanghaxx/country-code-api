@@ -37,7 +37,21 @@ namespace Data.Repository
                 return _currencyRepository;
             }
         }
+
         
+        private IOrganizationRepository _organizationRepository;
+        public IOrganizationRepository OrganizationRepository
+        {
+            get
+            {
+                if (_organizationRepository == null)
+                {
+                    _organizationRepository = new OrganizationRepository(CountryContext);
+                }
+                return _organizationRepository;
+            }
+        }
+
         protected CountryContext CountryContext { get; set; }
 
         public UnitOfWork(CountryContext context)

@@ -81,6 +81,7 @@
       <DependentUpon>201802190034567_AddIdentity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repository\OrganizationRepository.cs" />
     <Compile Include="Repository\CurrencyRepository.cs" />
     <Compile Include="Repository\CountryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
