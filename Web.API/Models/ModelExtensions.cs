@@ -36,7 +36,15 @@ namespace Web.API.Models
                         : country.Organizations.AsDTO(urlHelper, false),
                     CallingCode = country.CallingCode,
                     DateFormat = country.DateFormat,
-            };
+                    PostUrl = urlHelper == null ? ""
+                        : urlHelper.Link("PostCountry", null),
+                    PutUrl = urlHelper == null ? ""
+                        : urlHelper.Link("PutCountry", null),
+                    DeleteUrl = urlHelper == null ? ""
+                        : urlHelper.Link("DeleteCountry", null),
+                    PostCurrencyUrl = urlHelper == null ? ""
+                        : urlHelper.Link("PostCurrencyUrl", null),
+                };
             }
             else
             {
@@ -73,6 +81,12 @@ namespace Web.API.Models
             {
                 dto = new CurrencyDetailsDTO()
                 {
+                    PostUrl = urlHelper == null ? ""
+                        : urlHelper.Link("PostCurrency", null),
+                    PutUrl = urlHelper == null ? ""
+                        : urlHelper.Link("PutCurrency", null),
+                    DeleteUrl = urlHelper == null ? ""
+                        : urlHelper.Link("DeleteCurrency", null),
                     Countries = currency.Countries == null?
                         new List<CountryDTO>()
                         : currency.Countries.AsCountryDTO(urlHelper, false)

@@ -38,7 +38,7 @@ namespace Web.API.Controllers
                 {
                     return NotFound();
                 }
-                return Ok(items.AsCurrencyDTO(Url));
+                return Ok(items.AsCurrencyDTO(Url, false));
             }
         }
 
@@ -70,7 +70,7 @@ namespace Web.API.Controllers
         /// <param name="search">Search parameters</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("find")]
+        [Route("find", Name = "FindCurrency")]
         public async Task<IHttpActionResult> FindCurrencies([FromBody] SearchDTO search)
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
@@ -91,7 +91,7 @@ namespace Web.API.Controllers
         /// <param name="currency"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("")]
+        [Route("", Name = "PostCurrency")]
         [Authorize]
         public async Task<IHttpActionResult> PostCurrency([FromBody] CurrencyDetailsDTO currency)
         {
@@ -145,7 +145,7 @@ namespace Web.API.Controllers
         /// <param name="isoCode"></param>
         /// <param name="currency"></param>
         /// <returns></returns>
-        [Route("{isoCode}")]
+        [Route("{isoCode}", Name = "PutCurrency")]
         [HttpPut]
         [Authorize]
         public async Task<IHttpActionResult> UpdateCurrency(string isoCode, [FromBody] CountryDetailsDTO currency)
@@ -180,7 +180,7 @@ namespace Web.API.Controllers
         /// </summary>
         /// <param name="isoCode"></param>
         /// <returns></returns>
-        [Route("{isoCode}")]
+        [Route("{isoCode}", Name = "DeleteCurrency")]
         [HttpDelete]
         [Authorize]
         public async Task<IHttpActionResult> DeleteCurrency(string isoCode)

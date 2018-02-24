@@ -51,7 +51,7 @@ namespace Web.API.Controllers
         /// <param name="search">Search parameters</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("find")]
+        [Route("find", Name = "FindCountry")]
         public async Task<IHttpActionResult> FindCountries([FromBody] SearchDTO search)
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
@@ -94,7 +94,7 @@ namespace Web.API.Controllers
         /// <param name="country"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("")]
+        [Route("", Name = "PostCountry")]
         [Authorize]
         public async Task<IHttpActionResult> PostCountry([FromBody] CountryDetailsDTO country)
         {
@@ -164,7 +164,7 @@ namespace Web.API.Controllers
         /// <param name="isoCode"></param>
         /// <param name="country"></param>
         /// <returns></returns>
-        [Route("{isoCode}")]
+        [Route("{isoCode}", Name = "PutCountry")]
         [HttpPut]
         [Authorize]
         public async Task<IHttpActionResult> UpdateCountry(string isoCode, [FromBody] CountryDetailsDTO country)
@@ -200,7 +200,7 @@ namespace Web.API.Controllers
         /// </summary>
         /// <param name="isoCode"></param>
         /// <returns></returns>
-        [Route("{isoCode}")]
+        [Route("{isoCode}", Name = "DeleteCountry")]
         [HttpDelete]
         [Authorize]
         public async Task<IHttpActionResult> DeleteCountry(string isoCode)
@@ -227,7 +227,7 @@ namespace Web.API.Controllers
         /// <param name="isoCode"></param>
         /// <param name="currency"></param>
         /// <returns></returns>
-        [Route("{isoCode}/currency")]
+        [Route("{isoCode}/currency", Name = "PostCurrencyUrl")]
         [HttpPost]
         [Authorize]
         public async Task<IHttpActionResult> AddCurrency(string isoCode, [FromBody] CurrencyDTO currency)

@@ -39,22 +39,6 @@ namespace Data.Repository.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            /*
-             TODO
-             DB
-                # Descriptions: use custom migration operations to create in DB 
-
-                # Country: normalize iso-codes by country (there are 4 types for country code in ISO-3166).
-                    https://ru.wikipedia.org/wiki/ISO_3166-1
-                    https://ru.wikipedia.org/wiki/ISO_3166-2
-                    All types in JSON:
-                    https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes
-                    Main entity should have most common code (3166 alpha-2).
-                # Currency: normalize iso-codes by currency
-                    https://en.wikipedia.org/wiki/ISO_4217
-                    https://www.iban.com/currency-codes.html
-            */
-
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

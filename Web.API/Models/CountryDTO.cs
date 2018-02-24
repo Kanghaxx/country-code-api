@@ -14,6 +14,11 @@ namespace Web.API.Models
 
     public class CountryDetailsDTO: CountryDTO
     {
+        public string PostUrl { get; set; }
+        public string PutUrl { get; set; }
+        public string DeleteUrl { get; set; }
+        public string PostCurrencyUrl { get; set; }
+
         public int? CallingCode { get; set; }
         public string DateFormat { get; set; }
         public IEnumerable<CurrencyDTO> Currencies { get; set; }
