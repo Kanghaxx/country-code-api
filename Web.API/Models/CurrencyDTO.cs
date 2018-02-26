@@ -14,7 +14,7 @@ namespace Web.API.Models
 
     public class CountryCurrencyDTO : CurrencyDTO
     {
-        public string DeleteFromCountryUrl { get; set; }
+        public string DeleteCurrencyUrl { get; set; }
     }
 
     public class CurrencyDetailsDTO : CurrencyDTO

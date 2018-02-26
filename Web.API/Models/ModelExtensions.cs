@@ -30,7 +30,7 @@ namespace Web.API.Models
                 {
                     Currencies = country.Currencies == null?
                         new List<CurrencyDTO>()
-                        : country.Currencies.AsCurrencyDTO(urlHelper, false),
+                        : country.Currencies.AsCurrencyDTO(urlHelper, false, true),
                     Organizations = country.Organizations == null ?
                         new List<OrganizationDTO>()
                         : country.Organizations.AsDTO(urlHelper, false),
@@ -63,18 +63,18 @@ namespace Web.API.Models
     public static class CurrencyExtensions
     {
         public static IEnumerable<CurrencyDTO> AsCurrencyDTO(this IEnumerable<Currency> data, 
-            UrlHelper urlHelper, bool details = true)
+            UrlHelper urlHelper, bool details = true, bool slave = false)
         {
             var result = new List<CurrencyDTO>();
             foreach (Currency c in data)
             {
-                result.Add(c.AsCurrencyDTO(urlHelper, details));
+                result.Add(c.AsCurrencyDTO(urlHelper, details, slave));
             }
             return result;
         }
 
         public static CurrencyDTO AsCurrencyDTO(this Currency currency, 
-            UrlHelper urlHelper, bool details = true)
+            UrlHelper urlHelper, bool details = true, bool slave = false)
         {
             CurrencyDTO dto;
             if (details)
@@ -94,7 +94,18 @@ namespace Web.API.Models
             }
             else
             {
-                dto = new CurrencyDTO();
+                if (slave)
+                {
+                    dto = new CountryCurrencyDTO()
+                    {
+                        DeleteCurrencyUrl = urlHelper == null ? "" :
+                            urlHelper.Link("DeleteCurrencyUrl", new {isoCodeCurrency = currency.IsoCode})
+                    };
+                }
+                else
+                {
+                    dto = new CurrencyDTO();
+                }
             }
             dto.IsoCode = currency.IsoCode;
             dto.Name = currency.Name;

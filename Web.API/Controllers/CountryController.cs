@@ -263,7 +263,7 @@ namespace Web.API.Controllers
         /// <param name="isoCode"></param>
         /// <param name="isoCodeCurrency"></param>
         /// <returns></returns>
-        [Route("{isoCode}/currency/{isoCodeCurrency}")]
+        [Route("{isoCode}/currency/{isoCodeCurrency}", Name = "DeleteCurrencyUrl")]
         [HttpDelete]
         [Authorize]
         public async Task<IHttpActionResult> RemoveCurrency(string isoCode, string isoCodeCurrency)
