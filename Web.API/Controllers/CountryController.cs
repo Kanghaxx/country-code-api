@@ -112,7 +112,7 @@ namespace Web.API.Controllers
 
                 var newCountry = new Country()
                 {
-                    IsoCode = country.IsoCode,
+                    IsoCode = country.IsoCode.ToUpper(),
                     Name = country.Name,
                     DateFormat = country.DateFormat,
                     CallingCode = country.CallingCode,
@@ -181,7 +181,7 @@ namespace Web.API.Controllers
                     return NotFound();
                 }
 
-                item.IsoCode = country.IsoCode;
+                item.IsoCode = country.IsoCode.ToUpper();
                 item.Name = country.Name;
                 item.CallingCode = country.CallingCode;
                 item.DateFormat = country.DateFormat;

@@ -109,7 +109,7 @@ namespace Web.API.Controllers
 
                 var newCurrency = new Currency()
                 {
-                    IsoCode = currency.IsoCode,
+                    IsoCode = currency.IsoCode.ToUpper(),
                     Name = currency.Name,
                     Countries = new List<Country>(),
                 };
@@ -162,7 +162,7 @@ namespace Web.API.Controllers
                     return NotFound();
                 }
 
-                item.IsoCode = currency.IsoCode;
+                item.IsoCode = currency.IsoCode.ToUpper();
                 item.Name = currency.Name;
 
                 await rep.CompleteAsync();

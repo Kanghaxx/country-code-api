@@ -39,11 +39,11 @@ namespace Web.API.Models
                     PostUrl = urlHelper == null ? ""
                         : urlHelper.Link("PostCountry", null),
                     PutUrl = urlHelper == null ? ""
-                        : urlHelper.Link("PutCountry", null),
+                        : urlHelper.Link("PutCountry", new { isoCode = country.IsoCode }),
                     DeleteUrl = urlHelper == null ? ""
-                        : urlHelper.Link("DeleteCountry", null),
+                        : urlHelper.Link("DeleteCountry", new { isoCode = country.IsoCode }),
                     PostCurrencyUrl = urlHelper == null ? ""
-                        : urlHelper.Link("PostCurrencyUrl", null),
+                        : urlHelper.Link("PostCurrencyUrl", new { isoCode = country.IsoCode }),
                 };
             }
             else
@@ -84,9 +84,9 @@ namespace Web.API.Models
                     PostUrl = urlHelper == null ? ""
                         : urlHelper.Link("PostCurrency", null),
                     PutUrl = urlHelper == null ? ""
-                        : urlHelper.Link("PutCurrency", null),
+                        : urlHelper.Link("PutCurrency", new { isoCode = currency.IsoCode }),
                     DeleteUrl = urlHelper == null ? ""
-                        : urlHelper.Link("DeleteCurrency", null),
+                        : urlHelper.Link("DeleteCurrency", new { isoCode = currency.IsoCode }),
                     Countries = currency.Countries == null?
                         new List<CountryDTO>()
                         : currency.Countries.AsCountryDTO(urlHelper, false)
