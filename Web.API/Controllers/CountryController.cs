@@ -30,7 +30,7 @@ namespace Web.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("")]
+        [Route("", Name = "GetCountries")]
         public async Task<IHttpActionResult> GetCountries()
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())

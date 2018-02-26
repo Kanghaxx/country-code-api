@@ -153,9 +153,11 @@
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\CurrencyController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Models\CurrencyDTO.cs" />
     <Compile Include="Models\CountryDTO.cs" />
     <Compile Include="Models\CountryFindDTO.cs" />
+    <Compile Include="Models\HomeResponseModel.cs" />
     <Compile Include="Models\ModelExtensions.cs" />
     <Compile Include="Models\OrganizationDTO.cs" />
     <Compile Include="Auth\ApplicationOAuthServerProvider.cs" />
