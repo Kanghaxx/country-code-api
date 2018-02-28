@@ -38,7 +38,14 @@ namespace Web.API.Controllers
                 {
                     return NotFound();
                 }
-                return Ok(items.AsCurrencyDTO(Url, false));
+
+                var result = new GetCurrenciesResult()
+                {
+                    PostURL = Url.Link("PostCurrency", null),
+                    Currencies = items.AsCurrencyDTO(Url, false)
+                };
+
+                return Ok(result);
             }
         }
 

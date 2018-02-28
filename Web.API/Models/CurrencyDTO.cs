@@ -19,7 +19,6 @@ namespace Web.API.Models
 
     public class CurrencyDetailsDTO : CurrencyDTO
     {
-        public string PostUrl { get; set; }
         public string PutUrl { get; set; }
         public string DeleteUrl { get; set; }
 

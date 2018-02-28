@@ -38,7 +38,14 @@ namespace Web.API.Controllers
                 {
                     return NotFound();
                 }
-                return Ok(items.AsDTO(Url, false));
+
+                var result = new GetOrganizationsResult()
+                {
+                    PostURL = Url.Link("PostOrganization", null),
+                    Organizations = items.AsDTO(Url, false)
+                };
+
+                return Ok(result);
             }
         }
 

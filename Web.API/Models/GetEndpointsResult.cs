@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Web.API.Models
 {
-    public class HomeResponseModel
+    public class GetEndpointsResult
     {
         public IDictionary<string, string> Endpoints { get; set; }
     }

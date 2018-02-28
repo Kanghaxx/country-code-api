@@ -158,7 +158,10 @@
     <Compile Include="Models\CurrencyDTO.cs" />
     <Compile Include="Models\CountryDTO.cs" />
     <Compile Include="Models\CountryFindDTO.cs" />
-    <Compile Include="Models\HomeResponseModel.cs" />
+    <Compile Include="Models\GetOrganizationsResult.cs" />
+    <Compile Include="Models\GetCurrenciesResult.cs" />
+    <Compile Include="Models\GetCountriesResult.cs" />
+    <Compile Include="Models\GetEndpointsResult.cs" />
     <Compile Include="Models\ModelExtensions.cs" />
     <Compile Include="Models\OrganizationDTO.cs" />
     <Compile Include="Auth\ApplicationOAuthServerProvider.cs" />

@@ -10,6 +10,7 @@ using Data.Common.Abstract;
 using Web.API.Controllers;
 using System.Web.Http.Results;
 using Web.API.Models;
+using System.Web.Http.Routing;
 
 namespace Testing.Web.API.Controller
 {
@@ -43,14 +44,19 @@ namespace Testing.Web.API.Controller
             uowMock.Setup(m => m.CountryRepository).Returns(repMock.Object);
             var factoryMock = new Mock<IStoreFactory>();
             factoryMock.Setup(m => m.CreateUnitOfWork()).Returns(uowMock.Object);
+            var urlHelper = new Mock<UrlHelper>();
+            urlHelper.Setup(m => m.Link("PostCountry", null))
+                .Returns("api/country");
 
             var c = new CountryController(factoryMock.Object);
+            c.Url = urlHelper.Object;
 
             var result = await c.GetCountries();
-            var contentResult = result as OkNegotiatedContentResult<IEnumerable<CountryDTO>>;
+            var contentResult = result as OkNegotiatedContentResult<GetCountriesResult>;
 
             Assert.IsNotNull(contentResult);
-            Assert.IsTrue(contentResult.Content.Count() == 3);
+            Assert.IsTrue(contentResult.Content.PostURL == "api/country");
+            Assert.IsTrue(contentResult.Content.Countries.Count() == 3);
         }
 
         [TestMethod]

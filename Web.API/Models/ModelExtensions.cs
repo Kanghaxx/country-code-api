@@ -36,8 +36,6 @@ namespace Web.API.Models
                         : country.Organizations.AsDTO(urlHelper, false),
                     CallingCode = country.CallingCode,
                     DateFormat = country.DateFormat,
-                    PostUrl = urlHelper == null ? ""
-                        : urlHelper.Link("PostCountry", null),
                     PutUrl = urlHelper == null ? ""
                         : urlHelper.Link("PutCountry", new { isoCode = country.IsoCode }),
                     DeleteUrl = urlHelper == null ? ""
@@ -81,8 +79,6 @@ namespace Web.API.Models
             {
                 dto = new CurrencyDetailsDTO()
                 {
-                    PostUrl = urlHelper == null ? ""
-                        : urlHelper.Link("PostCurrency", null),
                     PutUrl = urlHelper == null ? ""
                         : urlHelper.Link("PutCurrency", new { isoCode = currency.IsoCode }),
                     DeleteUrl = urlHelper == null ? ""
@@ -140,8 +136,6 @@ namespace Web.API.Models
             {
                 dto = new OrganizationDetailsDTO()
                 {
-                    PostUrl = urlHelper == null ? ""
-                        : urlHelper.Link("PostOrganization", null),
                     PutUrl = urlHelper == null ? ""
                         : urlHelper.Link("PutOrganization", new { Name = item.Name }),
                     DeleteUrl = urlHelper == null ? ""

@@ -17,9 +17,9 @@ namespace Web.API.Controllers
         /// </summary>
         [HttpGet]
         [Route("", Name = "GetEndpoints")]
-        public IHttpActionResult Get()
+        public IHttpActionResult GetEndpoints()
         {
-            var result = new HomeResponseModel()
+            var result = new GetEndpointsResult()
             {
                 Endpoints = new Dictionary<string, string>()
                 {

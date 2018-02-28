@@ -40,7 +40,14 @@ namespace Web.API.Controllers
                 {
                     return NotFound();
                 }
-                return Ok(items.AsCountryDTO(Url, false));
+
+                var result = new GetCountriesResult()
+                {
+                    PostURL = Url.Link("PostCountry", null),
+                    Countries = items.AsCountryDTO(Url, false)
+                };
+
+                return Ok(result);
             }
         }
         

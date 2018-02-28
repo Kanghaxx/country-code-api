@@ -156,7 +156,7 @@
             <param name="isoCode"></param>
             <returns></returns>
         </member>
-        <member name="M:Web.API.Controllers.HomeController.Get">
+        <member name="M:Web.API.Controllers.HomeController.GetEndpoints">
             <summary>
             Get endpoints
             </summary>

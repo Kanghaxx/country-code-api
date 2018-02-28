@@ -10,6 +10,7 @@ using Data.Common.Abstract;
 using Web.API.Controllers;
 using System.Web.Http.Results;
 using Web.API.Models;
+using System.Web.Http.Routing;
 
 namespace Testing.Web.API.Controller
 {
@@ -43,14 +44,19 @@ namespace Testing.Web.API.Controller
             uowMock.Setup(m => m.OrganizationRepository).Returns(repMock.Object);
             var factoryMock = new Mock<IStoreFactory>();
             factoryMock.Setup(m => m.CreateUnitOfWork()).Returns(uowMock.Object);
+            var urlHelper = new Mock<UrlHelper>();
+            urlHelper.Setup(m => m.Link("PostOrganization", null))
+                .Returns("api/organization");
 
             var c = new OrganizationController(factoryMock.Object);
+            c.Url = urlHelper.Object;
 
             var result = await c.GetOrganizations();
-            var contentResult = result as OkNegotiatedContentResult<IEnumerable<OrganizationDTO>>;
+            var contentResult = result as OkNegotiatedContentResult<GetOrganizationsResult>;
 
             Assert.IsNotNull(contentResult);
-            Assert.IsTrue(contentResult.Content.Count() == 3);
+            Assert.IsTrue(contentResult.Content.PostURL == "api/organization");
+            Assert.IsTrue(contentResult.Content.Organizations.Count() == 3);
         }
 
         [TestMethod]

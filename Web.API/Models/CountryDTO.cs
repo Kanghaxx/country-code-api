@@ -14,7 +14,6 @@ namespace Web.API.Models
 
     public class CountryDetailsDTO: CountryDTO
     {
-        public string PostUrl { get; set; }
         public string PutUrl { get; set; }
         public string DeleteUrl { get; set; }
         public string PostCurrencyUrl { get; set; }

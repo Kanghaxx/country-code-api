@@ -31,8 +31,8 @@ namespace Testing.Web.API.Controller
             c.Url = urlHelper.Object;
 
             // Act
-            var result = c.Get();
-            var contentResult = result as OkNegotiatedContentResult<HomeResponseModel>;
+            var result = c.GetEndpoints();
+            var contentResult = result as OkNegotiatedContentResult<GetEndpointsResult>;
 
             Assert.IsNotNull(contentResult);
             Assert.IsTrue(contentResult.Content.Endpoints.Count() == 4);

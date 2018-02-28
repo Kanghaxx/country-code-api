@@ -13,7 +13,6 @@ namespace Web.API.Models
 
     public class OrganizationDetailsDTO: OrganizationDTO
     {
-        public string PostUrl { get; set; }
         public string PutUrl { get; set; }
         public string DeleteUrl { get; set; }
 
