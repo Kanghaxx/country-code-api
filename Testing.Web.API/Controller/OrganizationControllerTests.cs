@@ -47,6 +47,8 @@ namespace Testing.Web.API.Controller
             var urlHelper = new Mock<UrlHelper>();
             urlHelper.Setup(m => m.Link("PostOrganization", null))
                 .Returns("api/organization");
+            urlHelper.Setup(m => m.Link("Organization", It.IsAny<object>()))
+                .Returns("api/organization/1");
 
             var c = new OrganizationController(factoryMock.Object);
             c.Url = urlHelper.Object;
@@ -56,6 +58,7 @@ namespace Testing.Web.API.Controller
 
             Assert.IsNotNull(contentResult);
             Assert.IsTrue(contentResult.Content.PostURL == "api/organization");
+            Assert.IsTrue(contentResult.Content.Organizations.All(x => x.GetUrl == "api/organization/1"));
             Assert.IsTrue(contentResult.Content.Organizations.Count() == 3);
         }
 
@@ -86,14 +89,29 @@ namespace Testing.Web.API.Controller
             uowMock.Setup(m => m.OrganizationRepository).Returns(repMock.Object);
             var factoryMock = new Mock<IStoreFactory>();
             factoryMock.Setup(m => m.CreateUnitOfWork()).Returns(uowMock.Object);
+            var urlHelper = new Mock<UrlHelper>();
+            urlHelper.Setup(m => m.Link("Organization", It.IsAny<object>()))
+                .Returns($"api/organization/{c1.Name}");
+            urlHelper.Setup(m => m.Link("PutOrganization", It.IsAny<object>()))
+                .Returns($"api/organization/{c1.Name}");
+            urlHelper.Setup(m => m.Link("DeleteOrganization", It.IsAny<object>()))
+                .Returns($"api/organization/{c1.Name}");
 
             var c = new OrganizationController(factoryMock.Object);
+            c.Url = urlHelper.Object;
 
             var result = await c.GetOrganization("BB");
             var contentResult = result as OkNegotiatedContentResult<OrganizationDTO>;
 
             Assert.IsNotNull(contentResult);
-            Assert.IsTrue(contentResult.Content.Name == c1.Name);
+            Assert.IsInstanceOfType(contentResult.Content, typeof(OrganizationDetailsDTO));
+            var dto = (OrganizationDetailsDTO)contentResult.Content;
+            Assert.IsTrue(dto.Name == c1.Name);
+            Assert.IsTrue(dto.Description == c1.Description);
+            Assert.IsTrue(dto.GetUrl == $"api/organization/{c1.Name}");
+            Assert.IsTrue(dto.PutUrl == $"api/organization/{c1.Name}");
+            Assert.IsTrue(dto.DeleteUrl == $"api/organization/{c1.Name}");
+
         }
 
         [TestMethod]

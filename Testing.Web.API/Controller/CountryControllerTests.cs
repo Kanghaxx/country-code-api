@@ -47,6 +47,8 @@ namespace Testing.Web.API.Controller
             var urlHelper = new Mock<UrlHelper>();
             urlHelper.Setup(m => m.Link("PostCountry", null))
                 .Returns("api/country");
+            urlHelper.Setup(m => m.Link("Country", It.IsAny<object>()))
+                .Returns("api/country/1");
 
             var c = new CountryController(factoryMock.Object);
             c.Url = urlHelper.Object;
@@ -56,6 +58,7 @@ namespace Testing.Web.API.Controller
 
             Assert.IsNotNull(contentResult);
             Assert.IsTrue(contentResult.Content.PostURL == "api/country");
+            Assert.IsTrue(contentResult.Content.Countries.All(x => x.GetUrl == "api/country/1"));
             Assert.IsTrue(contentResult.Content.Countries.Count() == 3);
         }
 
@@ -88,8 +91,16 @@ namespace Testing.Web.API.Controller
             uowMock.Setup(m => m.CountryRepository).Returns(repMock.Object);
             var factoryMock = new Mock<IStoreFactory>();
             factoryMock.Setup(m => m.CreateUnitOfWork()).Returns(uowMock.Object);
+            var urlHelper = new Mock<UrlHelper>();
+            urlHelper.Setup(m => m.Link("Country", It.IsAny<object>()))
+                .Returns($"api/country/{c1.Name}");
+            urlHelper.Setup(m => m.Link("PutCountry", It.IsAny<object>()))
+                .Returns($"api/country/{c1.Name}");
+            urlHelper.Setup(m => m.Link("DeleteCountry", It.IsAny<object>()))
+                .Returns($"api/country/{c1.Name}");
 
             var c = new CountryController(factoryMock.Object);
+            c.Url = urlHelper.Object;
 
             var result = await c.GetCountry("BB");
             var contentResult = result as OkNegotiatedContentResult<CountryDTO>;
@@ -97,6 +108,10 @@ namespace Testing.Web.API.Controller
             Assert.IsNotNull(contentResult);
             Assert.IsTrue(contentResult.Content.IsoCode == c1.IsoCode);
             Assert.IsTrue(contentResult.Content.Name == c1.Name);
+            var dto = (CountryDetailsDTO)contentResult.Content;
+            Assert.IsTrue(dto.GetUrl == $"api/country/{c1.Name}");
+            Assert.IsTrue(dto.PutUrl == $"api/country/{c1.Name}");
+            Assert.IsTrue(dto.DeleteUrl == $"api/country/{c1.Name}");
         }
 
         [TestMethod]

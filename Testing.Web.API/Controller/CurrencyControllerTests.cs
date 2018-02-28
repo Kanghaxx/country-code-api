@@ -47,6 +47,8 @@ namespace Testing.Web.API.Controller
             var urlHelper = new Mock<UrlHelper>();
             urlHelper.Setup(m => m.Link("PostCurrency", null))
                 .Returns("api/currency");
+            urlHelper.Setup(m => m.Link("Currency", It.IsAny<object>()))
+                .Returns("api/currency/1");
 
             var c = new CurrencyController(factoryMock.Object);
             c.Url = urlHelper.Object;
@@ -56,6 +58,7 @@ namespace Testing.Web.API.Controller
 
             Assert.IsNotNull(contentResult);
             Assert.IsTrue(contentResult.Content.PostURL == "api/currency");
+            Assert.IsTrue(contentResult.Content.Currencies.All(x => x.GetUrl == "api/currency/1"));
             Assert.IsTrue(contentResult.Content.Currencies.Count() == 3);
         }
 
@@ -88,8 +91,16 @@ namespace Testing.Web.API.Controller
             uowMock.Setup(m => m.CurrencyRepository).Returns(repMock.Object);
             var factoryMock = new Mock<IStoreFactory>();
             factoryMock.Setup(m => m.CreateUnitOfWork()).Returns(uowMock.Object);
+            var urlHelper = new Mock<UrlHelper>();
+            urlHelper.Setup(m => m.Link("Currency", It.IsAny<object>()))
+                .Returns($"api/currency/{c1.Name}");
+            urlHelper.Setup(m => m.Link("PutCurrency", It.IsAny<object>()))
+                .Returns($"api/currency/{c1.Name}");
+            urlHelper.Setup(m => m.Link("DeleteCurrency", It.IsAny<object>()))
+                .Returns($"api/currency/{c1.Name}");
 
             var c = new CurrencyController(factoryMock.Object);
+            c.Url = urlHelper.Object;
 
             var result = await c.GetCurrency("BB");
             var contentResult = result as OkNegotiatedContentResult<CurrencyDTO>;
@@ -97,6 +108,10 @@ namespace Testing.Web.API.Controller
             Assert.IsNotNull(contentResult);
             Assert.IsTrue(contentResult.Content.IsoCode == c1.IsoCode);
             Assert.IsTrue(contentResult.Content.Name == c1.Name);
+            var dto = (CurrencyDetailsDTO)contentResult.Content;
+            Assert.IsTrue(dto.GetUrl == $"api/currency/{c1.Name}");
+            Assert.IsTrue(dto.PutUrl == $"api/currency/{c1.Name}");
+            Assert.IsTrue(dto.DeleteUrl == $"api/currency/{c1.Name}");
         }
 
         [TestMethod]
