@@ -100,8 +100,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth\ApplicationOAuthServerProviderTests.cs" />
+    <Compile Include="Controller\HomeControllerTests.cs" />
+    <Compile Include="Controller\OrganizationControllerTests.cs" />
     <Compile Include="Controller\CurrencyControllerTests.cs" />
     <Compile Include="Controller\CountryControllerTests.cs" />
+    <Compile Include="Model\OrganizationExtensionsTests.cs" />
     <Compile Include="Model\CurrencyExtensionsTests.cs" />
     <Compile Include="Model\CountryExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

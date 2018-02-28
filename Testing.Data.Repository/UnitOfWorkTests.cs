@@ -79,6 +79,22 @@ namespace Testing.Data.Repository
 
 
         [TestMethod]
+        public void OrganizationRepository_Returns_InstanceOf_IOrganizationRepository()
+        {
+            var mockContext = new Mock<CountryContext>();
+
+            var service = new TestUnitofWork(mockContext.Object);
+
+            // Act
+            var r = service.OrganizationRepository;
+            var r2 = service.OrganizationRepository;
+
+            Assert.IsNotNull(r);
+            Assert.IsInstanceOfType(r, typeof(IOrganizationRepository));
+            Assert.AreSame(r, r2);
+        }
+
+        [TestMethod]
         public void Propagates_Same_Context()
         {
             var mockContext = new Mock<CountryContext>();
@@ -88,10 +104,13 @@ namespace Testing.Data.Repository
             // Act
             CountryRepository countryRep = service.CountryRepository as CountryRepository;
             CurrencyRepository currencyRep = service.CurrencyRepository as CurrencyRepository;
-            
+            OrganizationRepository orgRep = service.OrganizationRepository as OrganizationRepository;
+
             Assert.IsNotNull(countryRep);
             Assert.IsNotNull(currencyRep);
+            Assert.IsNotNull(orgRep);
             Assert.AreSame(countryRep.Context, currencyRep.Context);
+            Assert.AreSame(countryRep.Context, orgRep.Context);
         }
     }
 

@@ -68,6 +68,46 @@
             <param name="isoCodeCurrency"></param>
             <returns></returns>
         </member>
+        <member name="T:Web.API.Controllers.OrganizationController">
+            <summary>
+            Currencies
+            </summary>
+        </member>
+        <member name="M:Web.API.Controllers.OrganizationController.GetOrganizations">
+            <summary>
+            Get all organizations
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.API.Controllers.OrganizationController.GetOrganization(System.String)">
+            <summary>
+            Get single organization by name
+            </summary>
+            <param name="name">ISO-code</param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.API.Controllers.OrganizationController.PostOrganization(Web.API.Models.OrganizationDetailsDTO)">
+            <summary>
+            Add new organization
+            </summary>
+            <param name="organization"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.API.Controllers.OrganizationController.UpdateOrganization(System.String,Web.API.Models.OrganizationDetailsDTO)">
+            <summary>
+            Update organization
+            </summary>
+            <param name="name"></param>
+            <param name="organization"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Web.API.Controllers.OrganizationController.DeleteOrganization(System.String)">
+            <summary>
+            Delete organization
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
         <member name="T:Web.API.Controllers.CurrencyController">
             <summary>
             Currencies
@@ -101,7 +141,7 @@
             <param name="currency"></param>
             <returns></returns>
         </member>
-        <member name="M:Web.API.Controllers.CurrencyController.UpdateCurrency(System.String,Web.API.Models.CountryDetailsDTO)">
+        <member name="M:Web.API.Controllers.CurrencyController.UpdateCurrency(System.String,Web.API.Models.CurrencyDetailsDTO)">
             <summary>
             Update currency
             </summary>
@@ -115,6 +155,11 @@
             </summary>
             <param name="isoCode"></param>
             <returns></returns>
+        </member>
+        <member name="M:Web.API.Controllers.HomeController.Get">
+            <summary>
+            Get endpoints
+            </summary>
         </member>
     </members>
 </doc>

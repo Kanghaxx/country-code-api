@@ -50,8 +50,8 @@ namespace Testing.Web.API.Model
             // Act
             CurrencyDTO dto = cur.AsCurrencyDTO(urlHelper.Object, details: true);
             
-            Assert.AreEqual(dto.IsoCode, dto.IsoCode);
-            Assert.AreEqual(dto.Name, dto.Name);
+            Assert.AreEqual(dto.IsoCode, cur.IsoCode);
+            Assert.AreEqual(dto.Name, cur.Name);
             Assert.IsInstanceOfType(dto, typeof(CurrencyDetailsDTO));
             Assert.IsNotNull((dto as CurrencyDetailsDTO).Countries);
             Assert.IsTrue((dto as CurrencyDetailsDTO).Countries.Count() == 2);

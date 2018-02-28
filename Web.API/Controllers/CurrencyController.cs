@@ -148,7 +148,7 @@ namespace Web.API.Controllers
         [Route("{isoCode}", Name = "PutCurrency")]
         [HttpPut]
         [Authorize]
-        public async Task<IHttpActionResult> UpdateCurrency(string isoCode, [FromBody] CountryDetailsDTO currency)
+        public async Task<IHttpActionResult> UpdateCurrency(string isoCode, [FromBody] CurrencyDetailsDTO currency)
         {
             if (currency == null)
             {

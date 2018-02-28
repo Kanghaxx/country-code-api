@@ -126,13 +126,13 @@ namespace Web.API.Models
             var result = new List<OrganizationDTO>();
             foreach (Organization item in data)
             {
-                result.Add(item.AsDTO(urlHelper, details));
+                result.Add(item.AsOrganizationDTO(urlHelper, details));
             }
             return result;
         }
 
 
-        public static OrganizationDTO AsDTO(this Organization item, 
+        public static OrganizationDTO AsOrganizationDTO(this Organization item, 
             UrlHelper urlHelper, bool details = true)
         {
             OrganizationDTO dto;
@@ -140,6 +140,12 @@ namespace Web.API.Models
             {
                 dto = new OrganizationDetailsDTO()
                 {
+                    PostUrl = urlHelper == null ? ""
+                        : urlHelper.Link("PostOrganization", null),
+                    PutUrl = urlHelper == null ? ""
+                        : urlHelper.Link("PutOrganization", new { Name = item.Name }),
+                    DeleteUrl = urlHelper == null ? ""
+                        : urlHelper.Link("DeleteOrganization", new { Name = item.Name }),
                     Countries = item.Countries == null ?
                         new List<CountryDTO>()
                         : item.Countries.AsCountryDTO(urlHelper, false),
@@ -151,6 +157,8 @@ namespace Web.API.Models
                 dto = new OrganizationDTO();
             }
             dto.Name = item.Name;
+            dto.GetUrl = urlHelper == null ? "" :
+                urlHelper.Link("Organization", new { Name = item.Name });
 
             return dto;
         }

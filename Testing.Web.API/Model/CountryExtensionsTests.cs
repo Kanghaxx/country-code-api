@@ -86,17 +86,20 @@ namespace Testing.Web.API.Model
                 CountryId = 1,
                 IsoCode = "AA",
                 Name = "Country",
-                Currencies = null
+                Currencies = null,
+                Organizations = null
             };
 
             // Act
-            CountryDTO dto = c.AsCountryDTO(null,details: true);
+            CountryDTO dto = c.AsCountryDTO(null, details: true);
 
             Assert.AreEqual(dto.IsoCode, c.IsoCode);
             Assert.AreEqual(dto.Name, c.Name);
             Assert.IsInstanceOfType(dto, typeof(CountryDetailsDTO));
             Assert.IsNotNull((dto as CountryDetailsDTO).Currencies);
             Assert.IsTrue((dto as CountryDetailsDTO).Currencies.Count() == 0);
+            Assert.IsNotNull((dto as CountryDetailsDTO).Organizations);
+            Assert.IsTrue((dto as CountryDetailsDTO).Organizations.Count() == 0);
         }
 
     }

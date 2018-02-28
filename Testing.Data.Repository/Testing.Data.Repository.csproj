@@ -77,6 +77,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrganizationRepositoryTests.cs" />
     <Compile Include="CurrencyRepositoryTests.cs" />
     <Compile Include="UnitOfWorkTests.cs" />
     <Compile Include="CountryRepositoryTests.cs" />

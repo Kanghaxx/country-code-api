@@ -23,9 +23,10 @@ namespace Web.API.Controllers
             {
                 Endpoints = new Dictionary<string, string>()
                 {
-                    {"GetCountries", Url.Link("GetCountries", null) },
-                    {"GetCurrencies", Url.Link("GetCurrencies", null) },
-                    {"GetHelpHtml", Url.Content("~/api/help/index")},
+                    { "GetCountries", Url.Link("GetCountries", null) },
+                    { "GetCurrencies", Url.Link("GetCurrencies", null) },
+                    { "GetOrganizations", Url.Link("GetOrganizations", null) },
+                    { "GetHelpHtml", Url.Content("~/api/help/index")},
                 }
             };
 
