@@ -179,7 +179,7 @@ namespace Testing.Web.API.Controller
 
             var c = new CountryController(factoryMock.Object);
 
-            var result = await c.FindCountries(new SearchDTO()
+            var result = await c.FindCountries(new SearchBindingModel()
             {
                 IsoCodes = new string[] { "BB", "CC" }
             });
@@ -219,7 +219,7 @@ namespace Testing.Web.API.Controller
 
             var c = new CountryController(factoryMock.Object);
 
-            var result = await c.FindCountries(new SearchDTO()
+            var result = await c.FindCountries(new SearchBindingModel()
             {
                 IsoCodes = new string[] { "BB", "CC" }
             });

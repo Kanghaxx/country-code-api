@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Web.API.Models
 {
-    public class SearchDTO
+    public class SearchBindingModel
     {
         public string[] IsoCodes { get; set; }
     }

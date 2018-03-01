@@ -155,9 +155,10 @@
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\CurrencyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Models\CountryBindingModel.cs" />
     <Compile Include="Models\CurrencyDTO.cs" />
     <Compile Include="Models\CountryDTO.cs" />
-    <Compile Include="Models\CountryFindDTO.cs" />
+    <Compile Include="Models\SearchBindingModel.cs" />
     <Compile Include="Models\GetOrganizationsResult.cs" />
     <Compile Include="Models\GetCurrenciesResult.cs" />
     <Compile Include="Models\GetCountriesResult.cs" />

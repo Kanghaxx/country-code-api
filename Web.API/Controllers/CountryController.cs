@@ -60,7 +60,7 @@ namespace Web.API.Controllers
         [HttpPost]
         [Route("find", Name = "FindCountry")]
         [ResponseType(typeof(IEnumerable<CountryDTO>))]
-        public async Task<IHttpActionResult> FindCountries([FromBody] SearchDTO search)
+        public async Task<IHttpActionResult> FindCountries([FromBody] SearchBindingModel search)
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
             {
@@ -103,7 +103,7 @@ namespace Web.API.Controllers
         [Route("", Name = "PostCountry")]
         [Authorize]
         [ResponseType(typeof(CountryDetailsDTO))]
-        public async Task<IHttpActionResult> PostCountry([FromBody] CountryDetailsDTO country)
+        public async Task<IHttpActionResult> PostCountry([FromBody] CountryBindingModel country)
         {
             if (country == null)
             {
@@ -129,12 +129,12 @@ namespace Web.API.Controllers
 
                 if (country.Currencies != null)
                 {
-                    foreach (var curDto in country.Currencies)
+                    foreach (var isoCode in country.Currencies)
                     {
-                        var cur = await rep.CurrencyRepository.GetAsync(curDto.IsoCode);
+                        var cur = await rep.CurrencyRepository.GetAsync(isoCode);
                         if (cur == null)
                         {
-                            return BadRequest($"Currency {curDto.IsoCode} not found");
+                            return BadRequest($"Currency {isoCode} not found");
                         }
                         newCountry.Currencies.Add(cur);
                     }
@@ -142,12 +142,12 @@ namespace Web.API.Controllers
 
                 if (country.Organizations != null)
                 {
-                    foreach (var orgDto in country.Organizations)
+                    foreach (var isoCode in country.Organizations)
                     {
-                        var org = await rep.OrganizationRepository.GetAsync(orgDto.Name);
+                        var org = await rep.OrganizationRepository.GetAsync(isoCode);
                         if (org == null)
                         {
-                            return BadRequest($"Organization {orgDto.Name} not found");
+                            return BadRequest($"Organization {isoCode} not found");
                         }
                         newCountry.Organizations.Add(org);
                     }
@@ -174,7 +174,7 @@ namespace Web.API.Controllers
         [HttpPut]
         [Authorize]
         [ResponseType(typeof(CountryDetailsDTO))]
-        public async Task<IHttpActionResult> UpdateCountry(string isoCode, [FromBody] CountryDetailsDTO country)
+        public async Task<IHttpActionResult> UpdateCountry(string isoCode, [FromBody] CountryBindingModel country)
         {
             if (country == null)
             {
@@ -231,14 +231,14 @@ namespace Web.API.Controllers
         /// Add an existing currency to the country
         /// </summary>
         /// <param name="isoCode"></param>
-        /// <param name="currency"></param>
+        /// <param name="isoCodeCurrency"></param>
         [Route("{isoCode}/currency", Name = "PostCurrencyUrl")]
         [HttpPost]
         [Authorize]
         [ResponseType(typeof(CountryDetailsDTO))]
-        public async Task<IHttpActionResult> AddCurrency(string isoCode, [FromBody] CurrencyDTO currency)
+        public async Task<IHttpActionResult> AddCurrency(string isoCode, [FromBody] string isoCodeCurrency)
         {
-            if (currency == null)
+            if (isoCodeCurrency == null)
             {
                 return BadRequest($"Request content is empty");
             }
@@ -249,10 +249,10 @@ namespace Web.API.Controllers
                 {
                     return NotFound();
                 }
-                var cur = await rep.CurrencyRepository.GetAsync(currency.IsoCode);
+                var cur = await rep.CurrencyRepository.GetAsync(isoCodeCurrency);
                 if (cur == null)
                 {
-                    return BadRequest($"Currency {currency.IsoCode} not found");
+                    return BadRequest($"Currency {isoCodeCurrency} not found");
                 }
 
                 item.Currencies.Add(cur);

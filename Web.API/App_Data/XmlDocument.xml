@@ -14,7 +14,7 @@
             Get all countries
             </summary>
         </member>
-        <member name="M:Web.API.Controllers.CountryController.FindCountries(Web.API.Models.SearchDTO)">
+        <member name="M:Web.API.Controllers.CountryController.FindCountries(Web.API.Models.SearchBindingModel)">
             <summary>
             Get set of countries by parameters provided
             </summary>
@@ -26,13 +26,13 @@
             </summary>
             <param name="isoCode">ISO-code</param>
         </member>
-        <member name="M:Web.API.Controllers.CountryController.PostCountry(Web.API.Models.CountryDetailsDTO)">
+        <member name="M:Web.API.Controllers.CountryController.PostCountry(Web.API.Models.CountryBindingModel)">
             <summary>
             Add a new country
             </summary>
             <param name="country"></param>
         </member>
-        <member name="M:Web.API.Controllers.CountryController.UpdateCountry(System.String,Web.API.Models.CountryDetailsDTO)">
+        <member name="M:Web.API.Controllers.CountryController.UpdateCountry(System.String,Web.API.Models.CountryBindingModel)">
             <summary>
             Update a country
             </summary>
@@ -45,12 +45,12 @@
             </summary>
             <param name="isoCode"></param>
         </member>
-        <member name="M:Web.API.Controllers.CountryController.AddCurrency(System.String,Web.API.Models.CurrencyDTO)">
+        <member name="M:Web.API.Controllers.CountryController.AddCurrency(System.String,System.String)">
             <summary>
             Add an existing currency to the country
             </summary>
             <param name="isoCode"></param>
-            <param name="currency"></param>
+            <param name="isoCodeCurrency"></param>
         </member>
         <member name="M:Web.API.Controllers.CountryController.RemoveCurrency(System.String,System.String)">
             <summary>
@@ -110,7 +110,7 @@
             </summary>
             <param name="isoCode">ISO-code</param>
         </member>
-        <member name="M:Web.API.Controllers.CurrencyController.FindCurrencies(Web.API.Models.SearchDTO)">
+        <member name="M:Web.API.Controllers.CurrencyController.FindCurrencies(Web.API.Models.SearchBindingModel)">
             <summary>
             Get a set of currencies by parameters provided
             </summary>

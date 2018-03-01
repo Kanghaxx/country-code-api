@@ -80,7 +80,7 @@ namespace Web.API.Controllers
         [HttpPost]
         [Route("find", Name = "FindCurrency")]
         [ResponseType(typeof(IEnumerable<CurrencyDTO>))]
-        public async Task<IHttpActionResult> FindCurrencies([FromBody] SearchDTO search)
+        public async Task<IHttpActionResult> FindCurrencies([FromBody] SearchBindingModel search)
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
             {
