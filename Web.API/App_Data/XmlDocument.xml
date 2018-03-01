@@ -6,67 +6,58 @@
     <members>
         <member name="T:Web.API.Controllers.CountryController">
             <summary>
-            Coutries
+            Country API
             </summary>
         </member>
         <member name="M:Web.API.Controllers.CountryController.GetCountries">
             <summary>
             Get all countries
             </summary>
-            <returns></returns>
         </member>
         <member name="M:Web.API.Controllers.CountryController.FindCountries(Web.API.Models.SearchDTO)">
             <summary>
             Get set of countries by parameters provided
             </summary>
             <param name="search">Search parameters</param>
-            <returns></returns>
         </member>
-        <member name="M:Web.API.Controllers.CountryController.GetCountry(System.String,System.String)">
+        <member name="M:Web.API.Controllers.CountryController.GetCountry(System.String)">
             <summary>
-            Get single country by ISO-code
+            Get a single country by ISO-code
             </summary>
             <param name="isoCode">ISO-code</param>
-            <param name="culture"></param>
-            <returns></returns>
         </member>
         <member name="M:Web.API.Controllers.CountryController.PostCountry(Web.API.Models.CountryDetailsDTO)">
             <summary>
-            Add new country
+            Add a new country
             </summary>
             <param name="country"></param>
-            <returns></returns>
         </member>
         <member name="M:Web.API.Controllers.CountryController.UpdateCountry(System.String,Web.API.Models.CountryDetailsDTO)">
             <summary>
-            Update country
+            Update a country
             </summary>
             <param name="isoCode"></param>
             <param name="country"></param>
-            <returns></returns>
         </member>
         <member name="M:Web.API.Controllers.CountryController.DeleteCountry(System.String)">
             <summary>
-            Delete country
+            Delete a country
             </summary>
             <param name="isoCode"></param>
-            <returns></returns>
         </member>
         <member name="M:Web.API.Controllers.CountryController.AddCurrency(System.String,Web.API.Models.CurrencyDTO)">
             <summary>
-            Add currency to country
+            Add an existing currency to the country
             </summary>
             <param name="isoCode"></param>
             <param name="currency"></param>
-            <returns></returns>
         </member>
         <member name="M:Web.API.Controllers.CountryController.RemoveCurrency(System.String,System.String)">
             <summary>
-            Remove currency to country
+            Remove an existing currency from the country
             </summary>
             <param name="isoCode"></param>
             <param name="isoCodeCurrency"></param>
-            <returns></returns>
         </member>
         <member name="T:Web.API.Controllers.OrganizationController">
             <summary>
@@ -75,38 +66,33 @@
         </member>
         <member name="M:Web.API.Controllers.OrganizationController.GetOrganizations">
             <summary>
-            Get all organizations
+            Get all organizations and areas
             </summary>
-            <returns></returns>
         </member>
         <member name="M:Web.API.Controllers.OrganizationController.GetOrganization(System.String)">
             <summary>
-            Get single organization by name
+            Get a single organization by the name
             </summary>
             <param name="name">ISO-code</param>
-            <returns></returns>
         </member>
         <member name="M:Web.API.Controllers.OrganizationController.PostOrganization(Web.API.Models.OrganizationDetailsDTO)">
             <summary>
-            Add new organization
+            Add a new organization
             </summary>
             <param name="organization"></param>
-            <returns></returns>
         </member>
         <member name="M:Web.API.Controllers.OrganizationController.UpdateOrganization(System.String,Web.API.Models.OrganizationDetailsDTO)">
             <summary>
-            Update organization
+            Update an organization
             </summary>
             <param name="name"></param>
             <param name="organization"></param>
-            <returns></returns>
         </member>
         <member name="M:Web.API.Controllers.OrganizationController.DeleteOrganization(System.String)">
             <summary>
-            Delete organization
+            Delete an organization
             </summary>
             <param name="name"></param>
-            <returns></returns>
         </member>
         <member name="T:Web.API.Controllers.CurrencyController">
             <summary>
@@ -117,48 +103,41 @@
             <summary>
             Get all currencies
             </summary>
-            <returns></returns>
         </member>
-        <member name="M:Web.API.Controllers.CurrencyController.GetCurrency(System.String,System.String)">
+        <member name="M:Web.API.Controllers.CurrencyController.GetCurrency(System.String)">
             <summary>
-            Get single currency by ISO-code
+            Get a single currency by ISO-code
             </summary>
             <param name="isoCode">ISO-code</param>
-            <param name="culture"></param>
-            <returns></returns>
         </member>
         <member name="M:Web.API.Controllers.CurrencyController.FindCurrencies(Web.API.Models.SearchDTO)">
             <summary>
-            Get set of currencies by parameters provided
+            Get a set of currencies by parameters provided
             </summary>
             <param name="search">Search parameters</param>
-            <returns></returns>
         </member>
         <member name="M:Web.API.Controllers.CurrencyController.PostCurrency(Web.API.Models.CurrencyDetailsDTO)">
             <summary>
-            Add new currency
+            Add a new currency
             </summary>
             <param name="currency"></param>
-            <returns></returns>
         </member>
         <member name="M:Web.API.Controllers.CurrencyController.UpdateCurrency(System.String,Web.API.Models.CurrencyDetailsDTO)">
             <summary>
-            Update currency
+            Update a currency
             </summary>
             <param name="isoCode"></param>
             <param name="currency"></param>
-            <returns></returns>
         </member>
         <member name="M:Web.API.Controllers.CurrencyController.DeleteCurrency(System.String)">
             <summary>
-            Delete country
+            Delete a currency
             </summary>
             <param name="isoCode"></param>
-            <returns></returns>
         </member>
         <member name="M:Web.API.Controllers.HomeController.GetEndpoints">
             <summary>
-            Get endpoints
+            Get API endpoints
             </summary>
         </member>
     </members>

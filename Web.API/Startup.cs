@@ -41,20 +41,16 @@ namespace Web.API
             //   Instance returned from Delegate will be disposed after every request.
 
             kernel = CreateKernel();
+
             app.CreatePerOwinContext<UserManager>(CreateUserManager);
             
             ConfigureAuth(app);
 
             HttpConfiguration config = new HttpConfiguration();
-            
-            //AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            //RouteConfig.RegisterRoutes(RouteTable.Routes);
             WebApiConfig.Register(config);
 
             app.UseNinjectMiddleware(() => kernel).UseNinjectWebApi(config);
-
         }
 
         private void ConfigureAuth(IAppBuilder app)

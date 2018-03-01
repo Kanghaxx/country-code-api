@@ -11,6 +11,7 @@ using Data.Repository;
 using Data.Common.Model;
 using System.Net.Http;
 using System.Net;
+using System.Web.Http.Description;
 
 namespace Web.API.Controllers
 {
@@ -25,10 +26,11 @@ namespace Web.API.Controllers
         }
 
         /// <summary>
-        /// Get all organizations
+        /// Get all organizations and areas
         /// </summary>
-        /// <returns></returns>
+        [HttpGet]
         [Route("", Name = "GetOrganizations")]
+        [ResponseType(typeof(GetOrganizationsResult))]
         public async Task<IHttpActionResult> GetOrganizations()
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
@@ -51,11 +53,12 @@ namespace Web.API.Controllers
 
 
         /// <summary>
-        /// Get single organization by name
+        /// Get a single organization by the name
         /// </summary>
         /// <param name="name">ISO-code</param>
-        /// <returns></returns>
+        [HttpGet]
         [Route("{name}", Name = "Organization")]
+        [ResponseType(typeof(OrganizationDetailsDTO))]
         public async Task<IHttpActionResult> GetOrganization(string name)
         {
             using (IUnitOfWork rep = Store.CreateUnitOfWork())
@@ -71,13 +74,13 @@ namespace Web.API.Controllers
 
 
         /// <summary>
-        /// Add new organization
+        /// Add a new organization
         /// </summary>
         /// <param name="organization"></param>
-        /// <returns></returns>
         [HttpPost]
         [Route("", Name = "PostOrganization")]
         [Authorize]
+        [ResponseType(typeof(OrganizationDetailsDTO))]
         public async Task<IHttpActionResult> PostOrganization([FromBody] OrganizationDetailsDTO organization)
         {
             if (organization == null)
@@ -125,14 +128,14 @@ namespace Web.API.Controllers
 
 
         /// <summary>
-        /// Update organization
+        /// Update an organization
         /// </summary>
         /// <param name="name"></param>
         /// <param name="organization"></param>
-        /// <returns></returns>
-        [Route("{name}", Name = "PutOrganization")]
         [HttpPut]
+        [Route("{name}", Name = "PutOrganization")]
         [Authorize]
+        [ResponseType(typeof(OrganizationDetailsDTO))]
         public async Task<IHttpActionResult> UpdateOrganization(string name, 
             [FromBody] OrganizationDetailsDTO organization)
         {
@@ -162,12 +165,11 @@ namespace Web.API.Controllers
 
 
         /// <summary>
-        /// Delete organization
+        /// Delete an organization
         /// </summary>
         /// <param name="name"></param>
-        /// <returns></returns>
-        [Route("{name}", Name = "DeleteOrganization")]
         [HttpDelete]
+        [Route("{name}", Name = "DeleteOrganization")]
         [Authorize]
         public async Task<IHttpActionResult> DeleteOrganization(string name)
         {

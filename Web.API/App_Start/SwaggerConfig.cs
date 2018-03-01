@@ -70,17 +70,17 @@ namespace Web.API
                         //    .Description("API Key Authentication")
                         //    .Name("apiKey")
                         //    .In("header");
-                        //
-                        //c.OAuth2("oauth2")
-                        //    .Description("OAuth2 Implicit Grant")
-                        //    .Flow("implicit")
-                        //    .AuthorizationUrl("http://petstore.swagger.wordnik.com/api/oauth/dialog")
-                        //    //.TokenUrl("https://tempuri.org/token")
-                        //    .Scopes(scopes =>
-                        //    {
-                        //        scopes.Add("read", "Read access to protected resources");
-                        //        scopes.Add("write", "Write access to protected resources");
-                        //    });
+                        
+                        c.OAuth2("oauth2")
+                            .Description("OAuth2 Implicit Grant")
+                            .Flow("implicit")
+                            .AuthorizationUrl("api/login")
+                            .TokenUrl("api/login")
+                            .Scopes(scopes =>
+                            {
+                                scopes.Add("read", "Read access to protected resources");
+                                scopes.Add("write", "Write access to protected resources");
+                            });
 
                         // Set this flag to omit descriptions for any actions decorated with the Obsolete attribute
                         //c.IgnoreObsoleteActions();
@@ -161,7 +161,6 @@ namespace Web.API
                         // If you've defined an OAuth2 flow as described above, you could use a custom filter
                         // to inspect some attribute on each action and infer which (if any) OAuth2 scopes are required
                         // to execute the operation
-                        //
                         //c.OperationFilter<AssignOAuth2SecurityRequirements>();
 
                         // Post-modify the entire Swagger document by wiring up one or more Document filters.
@@ -224,8 +223,7 @@ namespace Web.API
 
                     // Specify which HTTP operations will have the 'Try it out!' option. An empty paramter list disables
                     // it for all operations.
-                    //
-                    //c.SupportedSubmitMethods("GET", "HEAD");
+                    c.SupportedSubmitMethods("GET", "HEAD");
 
                     // Use the CustomAsset option to provide your own version of assets used in the swagger-ui.
                     // It's typically used to instruct Swashbuckle to return your version instead of the default

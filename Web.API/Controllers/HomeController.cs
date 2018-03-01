@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Web.API.Models;
 
 namespace Web.API.Controllers
@@ -13,10 +14,11 @@ namespace Web.API.Controllers
     public class HomeController : ApiController
     {
         /// <summary>
-        /// Get endpoints
+        /// Get API endpoints
         /// </summary>
         [HttpGet]
         [Route("", Name = "GetEndpoints")]
+        [ResponseType(typeof(GetEndpointsResult))]
         public IHttpActionResult GetEndpoints()
         {
             var result = new GetEndpointsResult()
