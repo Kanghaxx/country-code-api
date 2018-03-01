@@ -28,6 +28,7 @@ namespace Web.API.Controllers
                     { "GetCountries", Url.Link("GetCountries", null) },
                     { "GetCurrencies", Url.Link("GetCurrencies", null) },
                     { "GetOrganizations", Url.Link("GetOrganizations", null) },
+                    { "GetOAuthToken", Url.Content("~/api/login")},
                     { "GetHelpHtml", Url.Content("~/api/help/index")},
                 }
             };

@@ -75,13 +75,13 @@
             </summary>
             <param name="name">ISO-code</param>
         </member>
-        <member name="M:Web.API.Controllers.OrganizationController.PostOrganization(Web.API.Models.OrganizationDetailsDTO)">
+        <member name="M:Web.API.Controllers.OrganizationController.PostOrganization(Web.API.Models.OrganizationBindingModel)">
             <summary>
             Add a new organization
             </summary>
             <param name="organization"></param>
         </member>
-        <member name="M:Web.API.Controllers.OrganizationController.UpdateOrganization(System.String,Web.API.Models.OrganizationDetailsDTO)">
+        <member name="M:Web.API.Controllers.OrganizationController.UpdateOrganization(System.String,Web.API.Models.OrganizationBindingModel)">
             <summary>
             Update an organization
             </summary>

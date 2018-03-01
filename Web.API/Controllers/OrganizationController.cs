@@ -81,7 +81,8 @@ namespace Web.API.Controllers
         [Route("", Name = "PostOrganization")]
         [Authorize]
         [ResponseType(typeof(OrganizationDetailsDTO))]
-        public async Task<IHttpActionResult> PostOrganization([FromBody] OrganizationDetailsDTO organization)
+        public async Task<IHttpActionResult> PostOrganization(
+            [FromBody] OrganizationBindingModel organization)
         {
             if (organization == null)
             {
@@ -104,12 +105,12 @@ namespace Web.API.Controllers
 
                 if (organization.Countries != null)
                 {
-                    foreach (var cDto in organization.Countries)
+                    foreach (var iso in organization.Countries)
                     {
-                        var c = await rep.CountryRepository.GetAsync(cDto.IsoCode);
+                        var c = await rep.CountryRepository.GetAsync(iso);
                         if (c == null)
                         {
-                            return BadRequest($"Country {cDto.IsoCode} not found");
+                            return BadRequest($"Country {iso} not found");
                         }
                         newItem.Countries.Add(c);
                     }
@@ -137,7 +138,7 @@ namespace Web.API.Controllers
         [Authorize]
         [ResponseType(typeof(OrganizationDetailsDTO))]
         public async Task<IHttpActionResult> UpdateOrganization(string name, 
-            [FromBody] OrganizationDetailsDTO organization)
+            [FromBody] OrganizationBindingModel organization)
         {
             if (organization == null)
             {
