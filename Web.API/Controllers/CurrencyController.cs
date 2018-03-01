@@ -102,7 +102,7 @@ namespace Web.API.Controllers
         [Route("", Name = "PostCurrency")]
         [Authorize]
         [ResponseType(typeof(CurrencyDetailsDTO))]
-        public async Task<IHttpActionResult> PostCurrency([FromBody] CurrencyDetailsDTO currency)
+        public async Task<IHttpActionResult> PostCurrency([FromBody] CurrencyBindingModel currency)
         {
             if (currency == null)
             {
@@ -125,12 +125,12 @@ namespace Web.API.Controllers
 
                 if (currency.Countries != null)
                 {
-                    foreach (var cDto in currency.Countries)
+                    foreach (var iso in currency.Countries)
                     {
-                        var c = await rep.CountryRepository.GetAsync(cDto.IsoCode);
+                        var c = await rep.CountryRepository.GetAsync(iso);
                         if (c == null)
                         {
-                            return BadRequest($"Country {cDto.IsoCode} not found");
+                            return BadRequest($"Country {iso} not found");
                         }
                         newCurrency.Countries.Add(c);
                     }
@@ -158,7 +158,7 @@ namespace Web.API.Controllers
         [HttpPut]
         [Authorize]
         public async Task<IHttpActionResult> UpdateCurrency(string isoCode, 
-            [FromBody] CurrencyDetailsDTO currency)
+            [FromBody] CurrencyBindingModel currency)
         {
             if (currency == null)
             {

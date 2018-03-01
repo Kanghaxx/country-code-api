@@ -155,6 +155,7 @@
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\CurrencyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Models\CurrencyBindingModel.cs" />
     <Compile Include="Models\CountryBindingModel.cs" />
     <Compile Include="Models\CurrencyDTO.cs" />
     <Compile Include="Models\CountryDTO.cs" />
