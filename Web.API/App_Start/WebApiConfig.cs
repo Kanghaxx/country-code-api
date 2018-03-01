@@ -14,15 +14,8 @@ namespace Web.API
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-
-            // Web API routes
+            
             config.MapHttpAttributeRoutes();
-
-            //config.Routes.MapHttpRoute(
-            //    name: "DefaultApi",
-            //    routeTemplate: "api/{controller}/{id}",
-            //    defaults: new { id = RouteParameter.Optional }
-            //);
 
             config.Formatters.JsonFormatter.SupportedMediaTypes
                 .Add(new MediaTypeHeaderValue("text/html"));
@@ -31,7 +24,6 @@ namespace Web.API
             formatter.SerializerSettings = new JsonSerializerSettings
             {
                 Formatting = Newtonsoft.Json.Formatting.Indented,
-                //TypeNameHandling = TypeNameHandling.Objects, // в ответе будет $type=<наименование типа модели с неймспейсом>
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
             };
         }
